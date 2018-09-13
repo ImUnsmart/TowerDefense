@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemy/enemy_tileset.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16.0035, 16.0323 )
+
+[node name="Enemy" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 2
+collision_mask = 12
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_group_": true
+}
+speed = 2
+health = 2
+damage = 1
+
+[node name="shape" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="normal" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="hurt" type="Sprite" parent="." index="2"]
+
+visible = false
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="hurt2" type="Sprite" parent="." index="3"]
+
+visible = false
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="hurt3" type="Sprite" parent="." index="4"]
+
+visible = false
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+

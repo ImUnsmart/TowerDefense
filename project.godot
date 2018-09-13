@@ -1,0 +1,57 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=3
+
+[application]
+
+config/name="TowerDefense"
+run/main_scene="res://scenes/Menu.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=768
+window/size/height=384
+window/handheld/emulate_touchscreen=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+window/stretch/shrink="1"
+
+[importer_defaults]
+
+texture={
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
+[layer_names]
+
+2d_physics/layer_1="background"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="tower"
+2d_physics/layer_4="projectiles"
+
+[rendering]
+
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_environment="res://default_env.tres"
