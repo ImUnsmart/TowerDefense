@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/tiles/tileset.png" type="Texture" id=1]
 
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16.0886, 16.0902 )
+
 [node name="tiles" type="Node"]
 
-[node name="tile0" type="Sprite" parent="." index="0"]
+[node name="bg_grass" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 1 )
 centered = false
@@ -12,7 +17,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="tile1" type="Sprite" parent="." index="1"]
+[node name="path_dirt" type="Sprite" parent="." index="1"]
 
 position = Vector2( 32, 0 )
 texture = ExtResource( 1 )
@@ -21,7 +26,23 @@ region_enabled = true
 region_rect = Rect2( 32, 0, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="tile2" type="Sprite" parent="." index="2"]
+[node name="collision" type="StaticBody2D" parent="path_dirt" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="shape" type="CollisionShape2D" parent="path_dirt/collision" index="0"]
+
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="bg_stone" type="Sprite" parent="." index="2"]
 
 position = Vector2( 64, 0 )
 texture = ExtResource( 1 )
@@ -30,7 +51,7 @@ region_enabled = true
 region_rect = Rect2( 64, 0, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="tile3" type="Sprite" parent="." index="3"]
+[node name="bg_lava_stone" type="Sprite" parent="." index="3"]
 
 position = Vector2( 96, 0 )
 texture = ExtResource( 1 )
@@ -39,7 +60,7 @@ region_enabled = true
 region_rect = Rect2( 96, 0, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="tile4" type="Sprite" parent="." index="4"]
+[node name="path_obsidian" type="Sprite" parent="." index="4"]
 
 position = Vector2( 128, 0 )
 texture = ExtResource( 1 )
@@ -48,7 +69,7 @@ region_enabled = true
 region_rect = Rect2( 0, 32, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="tile5" type="Sprite" parent="." index="5"]
+[node name="path_lava" type="Sprite" parent="." index="5"]
 
 position = Vector2( 160, 0 )
 texture = ExtResource( 1 )
@@ -57,7 +78,7 @@ region_enabled = true
 region_rect = Rect2( 32, 32, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="tile6" type="Sprite" parent="." index="6"]
+[node name="tile_button" type="Sprite" parent="." index="6"]
 
 position = Vector2( 192, 0 )
 texture = ExtResource( 1 )

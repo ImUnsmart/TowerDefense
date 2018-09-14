@@ -3,7 +3,7 @@ extends KinematicBody2D
 var path
 var pathPos = 0
 export var speed = 2
-export var health = 2
+export var health = 1
 export var damage = 1
 var maxhp
 

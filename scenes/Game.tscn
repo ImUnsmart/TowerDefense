@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles.tres" type="TileSet" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://assets/OpenSans-Regular.tres" type="DynamicFont" id=6]
 [ext_resource path="res://assets/button_green.png" type="Texture" id=7]
 [ext_resource path="res://assets/button_red.png" type="Texture" id=8]
-[ext_resource path="res://scenes/cannon.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/tower/tower_tileset.png" type="Texture" id=9]
+[ext_resource path="res://assets/Untitled.png" type="Texture" id=10]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -41,7 +42,15 @@ extra_spacing_top = -8
 font_data = SubResource( 2 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="Game" type="Node" index="0"]
+[sub_resource type="AtlasTexture" id=5]
+
+flags = 0
+atlas = ExtResource( 9 )
+region = Rect2( 32, 0, 32, 32 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+
+[node name="Game" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -140,7 +149,39 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="Cash" type="Sprite" parent="GUI" index="1"]
+[node name="Wave" type="Sprite" parent="GUI" index="1"]
+
+position = Vector2( 16, 80 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Label" type="Label" parent="GUI/Wave" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = -16.0
+margin_right = 68.0
+margin_bottom = 18.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 6 )
+text = "1"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Cash" type="Sprite" parent="GUI" index="2"]
 
 position = Vector2( 16, 48 )
 texture = ExtResource( 5 )
@@ -172,7 +213,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="upgrade" type="ColorRect" parent="GUI" index="2"]
+[node name="upgrade" type="ColorRect" parent="GUI" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -328,16 +369,34 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_fonts" ]
 
-[node name="cannon" type="Button" parent="GUI/upgrade" index="3"]
+[node name="buttons" type="Control" parent="GUI" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 20.0
-margin_top = 113.0
-margin_right = 78.0
-margin_bottom = 133.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="cannon" type="TextureButton" parent="GUI/buttons" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 672.0
+margin_top = 64.0
+margin_right = 704.0
+margin_bottom = 96.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -349,18 +408,50 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "cannon"
+texture_normal = SubResource( 5 )
+_sections_unfolded = [ "Textures" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="NextWave" type="Button" parent="GUI/buttons" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 640.0
+margin_top = 336.0
+margin_right = 736.0
+margin_bottom = 368.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Next Wave"
 flat = false
 align = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="Untitled" type="Sprite" parent="GUI" index="5"]
+
+position = Vector2( 288, 160 )
+scale = Vector2( 0.409091, 0.398425 )
+texture = ExtResource( 10 )
 
 [node name="towers" type="Node" parent="." index="5"]
 
-[node name="cannon" parent="towers" index="0" instance=ExtResource( 9 )]
-
-position = Vector2( 96, 320 )
-
 [connection signal="pressed" from="GUI/upgrade/upgrade" to="." method="_on_upgrade_pressed"]
 
-[connection signal="pressed" from="GUI/upgrade/cannon" to="." method="_on_cannon_pressed"]
+[connection signal="pressed" from="GUI/buttons/cannon" to="." method="_on_cannon_pressed"]
+
+[connection signal="pressed" from="GUI/buttons/NextWave" to="." method="_on_NextWave_pressed"]
 
 

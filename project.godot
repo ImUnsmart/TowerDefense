@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="TowerDefense"
-run/main_scene="res://scenes/Menu.tscn"
+run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -46,10 +46,16 @@ texture={
 
 [layer_names]
 
+2d_render/layer_1="background"
 2d_physics/layer_1="background"
+2d_render/layer_2="enemy"
 2d_physics/layer_2="enemy"
+2d_render/layer_3="tower_radius"
 2d_physics/layer_3="tower"
+2d_render/layer_4="tower"
 2d_physics/layer_4="projectiles"
+2d_render/layer_5="projectile"
+2d_physics/layer_5="tower_radius"
 
 [rendering]
 

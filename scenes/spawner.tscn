@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=1]
 
-[node name="spawner" type="Node2D"]
+[node name="spawner" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -17,7 +17,7 @@ __meta__ = {
 process_mode = 1
 wait_time = 1.0
 one_shot = false
-autostart = true
+autostart = false
 
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
 
