@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemy/enemy_tileset.png" type="Texture" id=2]
+[ext_resource path="res://assets/icons.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -57,5 +58,22 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 96, 0, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
+
+[node name="fire" type="Sprite" parent="." index="5"]
+
+visible = false
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 64, 64, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="dot_timer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="dot_timer" to="." method="_on_dot_timer_timeout"]
 
 

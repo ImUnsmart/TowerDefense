@@ -1,29 +1,24 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/cannon.gd" type="Script" id=1]
-[ext_resource path="res://scenes/cannonball.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/tower/tower_tileset.png" type="Texture" id=3]
-[ext_resource path="res://scripts/radius.gd" type="Script" id=4]
+[ext_resource path="res://assets/tower/tower_tileset.png" type="Texture" id=2]
+[ext_resource path="res://scripts/radius.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 14.9668, 15.4422 )
 
-[node name="tower_cannon" type="Node2D"]
+[node name="tower_cannon" type="Node2D" index="0"]
 
 z_index = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Z Index" ]
-bullet = ExtResource( 2 )
-fire_rate = 1
-bullet_health = 2
-cost = 500
 
 [node name="tower" type="Sprite" parent="." index="0"]
 
 z_index = 1
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 32, 0, 32, 32 )
 _sections_unfolded = [ "Region", "Z Index" ]
@@ -57,7 +52,7 @@ collision_layer = 16
 collision_mask = 2
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Collision", "Z Index" ]
 
 [node name="shoot_timer" type="Timer" parent="." index="3"]
