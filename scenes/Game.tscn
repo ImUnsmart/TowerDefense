@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles.tres" type="TileSet" id=2]
@@ -41,21 +41,21 @@ extra_spacing_top = -8
 font_data = SubResource( 2 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[sub_resource type="DynamicFontData" id=7]
+[sub_resource type="DynamicFontData" id=5]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=6]
 
 size = 18
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 7 )
+font_data = SubResource( 5 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=7]
 
 flags = 0
 atlas = ExtResource( 9 )
@@ -63,7 +63,7 @@ region = Rect2( 32, 0, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=8]
 
 flags = 0
 atlas = ExtResource( 9 )
@@ -78,6 +78,25 @@ atlas = ExtResource( 9 )
 region = Rect2( 96, 0, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
+
+[sub_resource type="DynamicFontData" id=10]
+
+hinting = 2
+font_path = "res://assets/OpenSans-Regular.ttf"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="DynamicFont" id=11]
+
+size = 16
+use_mipmaps = false
+use_filter = false
+font_data = SubResource( 10 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="Theme" id=12]
+
+default_font = SubResource( 11 )
+_sections_unfolded = [ "Resource" ]
 
 [node name="Game" type="Node" index="0"]
 
@@ -182,7 +201,7 @@ position = Vector2( 16, 80 )
 texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Region", "Transform" ]
 
 [node name="Label" type="Label" parent="GUI/Wave" index="0"]
 
@@ -443,7 +462,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 6 )
 text = "$10000"
 align = 1
 clip_text = true
@@ -512,7 +531,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 5 )
+texture_normal = SubResource( 7 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -548,9 +567,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 672.0
-margin_top = 115.0
+margin_top = 112.0
 margin_right = 704.0
-margin_bottom = 147.0
+margin_bottom = 144.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -562,7 +581,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 6 )
+texture_normal = SubResource( 8 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -667,7 +686,34 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
+[node name="AcceptDialog" type="AcceptDialog" parent="GUI" index="5"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 48.0
+margin_top = 144.0
+margin_right = 567.0
+margin_bottom = 224.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = SubResource( 12 )
+popup_exclusive = true
+window_title = "Alert!"
+resizable = true
+dialog_text = "Blue Enemies are have more health and are immune to projectiles."
+dialog_hide_on_ok = true
+_sections_unfolded = [ "Dialog", "Grow Direction", "Material", "Popup", "Rect", "Theme", "Visibility" ]
+
 [node name="towers" type="Node" parent="." index="5"]
+
+[connection signal="area_entered" from="base" to="base" method="_on_base_area_entered"]
 
 [connection signal="pressed" from="GUI/upgrade/upgrade" to="." method="_on_upgrade_pressed"]
 
