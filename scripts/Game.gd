@@ -18,7 +18,7 @@ const explode = preload("res://scenes/particle_explosion.tscn")
 
 func _ready():
 	damage(0)
-	set_money(5000)
+	set_money(25000)
 	pass
 	
 func _process(delta):

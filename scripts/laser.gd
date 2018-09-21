@@ -6,7 +6,7 @@ var color = Color(1, 0, 0)
 var thickness = 1
 
 func init():
-	fire_rate = 1.2
+	fire_rate = 1.0
 	display_name = "Laser"
 	description = "Locks on and slowly damages targets."
 	upgrade_costs = [100, 400, 1000, 3000, 10000]
@@ -52,4 +52,4 @@ func _draw():
 		draw_line(to_local(position), to_local(target.position), Color(color.r * p, color.g * p, color.b * p), thickness)
 		
 func get_cost():
-	return 300 
+	return 300

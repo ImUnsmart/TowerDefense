@@ -41,8 +41,8 @@ func _process(delta):
 	if !placed:
 		return
 	target = null
-	if $radius.get_overlapping_bodies().size() > 0:
-		target = $radius.get_overlapping_bodies().front()
+	if $radius.get_overlapping_areas().size() > 0:
+		target = $radius.get_overlapping_areas().front()
 		wr = weakref(target)
 
 func upgrade():
@@ -78,7 +78,7 @@ func _on_shoot_timer_timeout():
 	$bullets.add_child(b)
 
 func _on_body_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and placed:
+	if event is InputEventMouseButton && placed:
 		get_tree().root.get_node("Game").selected_tower = self
 		
 func get_value():

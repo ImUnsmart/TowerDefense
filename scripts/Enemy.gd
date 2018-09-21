@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 
 var path
 var pathPos = 0
@@ -18,6 +18,7 @@ func _process(delta):
 		position.x = path.position.x + 16
 		position.y = path.position.y + 12
 	pathPos += speed
+	
 	var hp = float(health) / maxhp
 	if hp <= 0.75 && hp > 0.5:
 		$normal.hide()
@@ -53,3 +54,9 @@ func _on_dot_timer_timeout():
 	if dot_count == 0:
 		$dot_timer.stop()
 		$fire.hide()
+
+
+func _on_Enemy_area_entered(area):
+	if "bullet" in area.get_name():
+		hurt(area.damage)
+		area.health -= 1

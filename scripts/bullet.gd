@@ -12,10 +12,5 @@ func _process(delta):
 	if health < 1:
 		queue_free()
 
-func _on_bullet_body_entered(body):
-	if "Enemy" in body.get_name():
-		body.hurt(damage)
-		health -= 1
-
 func _on_timeout_timeout():
 	queue_free()
