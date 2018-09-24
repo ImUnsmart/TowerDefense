@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/tower/tower.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/tower/cannon.gd" type="Script" id=2]
+
+[node name="tower_cannon" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="shoot_timer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="bullets" type="Node" parent="." index="4"]
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+
+

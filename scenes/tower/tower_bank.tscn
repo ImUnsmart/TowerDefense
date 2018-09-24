@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/tower/tower.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/tower/bank.gd" type="Script" id=2]
+
+[node name="tower" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="tower" parent="." index="0"]
+
+region_rect = Rect2( 96, 0, 32, 32 )
+
+

@@ -8,11 +8,12 @@ var wave = 0
 
 var pressed = true
 
-var costs = [ 500, 300, 900 ]
+var costs = [ 500, 300, 900, 450 ]
 
-const cannon = preload("res://scenes/tower_cannon.tscn")
-const laser = preload("res://scenes/tower_laser.tscn")
-const bank = preload("res://scenes/tower_bank.tscn")
+const cannon = preload("res://scenes/tower/tower_cannon.tscn")
+const laser = preload("res://scenes/tower/tower_laser.tscn")
+const bank = preload("res://scenes/tower/tower_bank.tscn")
+const lightning = preload("res://scenes/tower/tower_lightning.tscn")
 
 const explode = preload("res://scenes/particle_explosion.tscn")
 
@@ -52,7 +53,7 @@ func _process(delta):
 	if !$GUI/buttons.is_visible_in_tree():
 		if !hide:
 			$GUI/buttons.show()
-	if !$spawner.spawning:
+	if !$spawner.spawning && $spawner.get_node("enemies").get_child_count() == 0:
 		$GUI/buttons/NextWave.show()
 	else:
 		$GUI/buttons/NextWave.hide()		
@@ -115,7 +116,19 @@ func placeTowerAttempt():
 		selected_tower = placing
 		placing.placed = true
 		placing = null
+	
+func explosion(position, color=Color(1,0,0), fade=Color(0,0,0,0)):
+	var e = explode.instance()
+	e.set_colors(color, fade)
+	e.position = position
+	add_child(e)
+	return e
 
+func show_dialog(title, text):
+	$GUI/Information.window_title = title
+	$GUI/Information.dialog_text = text
+	$GUI/Information.popup()
+	
 func _on_upgrade_pressed():
 	var cost = selected_tower.upgrade_costs[selected_tower.level]
 	if money >= cost:
@@ -149,6 +162,14 @@ func _on_bank_pressed():
 		$towers.add_child(tower)
 		placing = tower
 
+func _on_lightning_pressed():
+	if money >= costs[3]:
+		var tower = lightning.instance()
+		var pos = get_viewport().get_mouse_position()
+		tower.position = pos
+		$towers.add_child(tower)
+		placing = tower
+
 func _on_sell_pressed():
 	var value = selected_tower.get_value()
 	add_money(value)
@@ -156,9 +177,3 @@ func _on_sell_pressed():
 	e.set_colors(Color(0.2, 0.2, 0.2, 1), Color(0, 0, 0, 0))
 	selected_tower.queue_free()
 	deselect()
-	
-func explosion(position):
-	var e = explode.instance()
-	e.position = position
-	add_child(e)
-	return e

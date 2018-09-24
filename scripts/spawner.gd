@@ -6,12 +6,15 @@ var spawning = false
 var spawned = 0
 var timer = 0
 var wave
+var dialog = false
+var game
 #var enemys
 #var e_index
 
 
 func _ready():
 	path = get_tree().root.get_node("Game/path/follow")
+	game = get_tree().root.get_node("Game")
 	pass
 
 #func _on_spawn_timer_timeout():
@@ -41,6 +44,10 @@ func _process(delta):
 	if spawning:
 		timer += 1
 	waves()
+	if !spawning && $enemies.get_child_count() == 0 && !dialog:
+		dialog = true
+		if wave == 9:
+			game.show_dialog("Blue Enemies", "Blue Enemies are have more health and are immune to projectiles.")
 
 func spawn_enemy(type, health, speed, damage):
 	var e
@@ -57,6 +64,7 @@ func spawn_enemy(type, health, speed, damage):
 func start(wave):
 	spawning = true
 	spawned = 0
+	dialog = false
 	self.wave = wave
 	
 func waves():
@@ -83,6 +91,9 @@ func waves():
 				spawning = false
 		if wave == 5:
 			spawn_enemy(0, 5, 1, 1)
+			spawning = false
+		if wave == 10:
+			spawn_enemy(1, 10, 1, 1)
 			spawning = false
 
 #func start(wave):
