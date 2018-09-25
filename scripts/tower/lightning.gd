@@ -9,7 +9,7 @@ func init():
 	damage = 1
 	display_name = "Lightning"
 	description = "Locks on and damages targets, metal coated targets take much more damage."
-	upgrade_costs = [100, 400, 1000, 3000, 10000]
+	upgrade_costs = [500, 800, 600, 1250, 8000]
 	upgrade_names = ["Shocking", "Lightning Rod", "Ranged Shock", "Chain Shock", "SuperShock"]
 	upgrade_descriptions = ["Deals 1 extra damage per tick.", "Shoots much faster.", "Can shock enemies that are much further away.", "Enemies that are shocked may shock other nearby enemies.", "Enemies with a metal coating instantly lose it."]
 	start_radius = 48

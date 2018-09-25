@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://scripts/enemy_red.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemy/enemy_tileset.png" type="Texture" id=2]
 [ext_resource path="res://assets/icons.png" type="Texture" id=3]
 
@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 16.0035, 16.0323 )
 
-[node name="Enemy" type="Area2D" index="0"]
+[node name="Enemy" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -22,22 +22,29 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-speed = 2
-health = 1
-damage = 1
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="shape" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
 
-[node name="normal" type="Sprite" parent="." index="1"]
+[node name="dot_timer" type="Timer" parent="." index="1"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="tex_normal" type="Sprite" parent="." index="2"]
 
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="hurt" type="Sprite" parent="." index="2"]
+[node name="tex_hurt" type="Sprite" parent="." index="3"]
 
 visible = false
 texture = ExtResource( 2 )
@@ -45,7 +52,7 @@ region_enabled = true
 region_rect = Rect2( 32, 0, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="hurt2" type="Sprite" parent="." index="3"]
+[node name="tex_hurt2" type="Sprite" parent="." index="4"]
 
 visible = false
 texture = ExtResource( 2 )
@@ -53,7 +60,7 @@ region_enabled = true
 region_rect = Rect2( 64, 0, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="hurt3" type="Sprite" parent="." index="4"]
+[node name="tex_hurt3" type="Sprite" parent="." index="5"]
 
 visible = false
 texture = ExtResource( 2 )
@@ -61,20 +68,13 @@ region_enabled = true
 region_rect = Rect2( 96, 0, 32, 32 )
 _sections_unfolded = [ "Offset", "Region" ]
 
-[node name="fire" type="Sprite" parent="." index="5"]
+[node name="fire" type="Sprite" parent="." index="6"]
 
 visible = false
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 64, 64, 32, 32 )
 _sections_unfolded = [ "Region" ]
-
-[node name="dot_timer" type="Timer" parent="." index="6"]
-
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
 
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 

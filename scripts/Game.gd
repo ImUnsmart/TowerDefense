@@ -4,7 +4,7 @@ var selected_tower
 var placing
 var lives = 100
 var money = 0
-var wave = 0
+var wave = 12
 
 var pressed = true
 
@@ -19,7 +19,7 @@ const explode = preload("res://scenes/particle_explosion.tscn")
 
 func _ready():
 	damage(0)
-	set_money(25000)
+	set_money(20000)
 	pass
 	
 func _process(delta):
@@ -94,6 +94,8 @@ func inc_wave():
 	wave += 1
 	$GUI/Wave/Label.text = String(wave)
 	$spawner.start(wave)
+
+func wave_money():
 	add_money(101 - wave)
 	var money = 0
 	for t in $towers.get_children():

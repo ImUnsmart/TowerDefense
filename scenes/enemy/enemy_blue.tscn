@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/enemy/enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/enemy_blue.gd" type="Script" id=2]
+
+[node name="Enemy" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="tex_normal" parent="." index="2"]
+
+region_rect = Rect2( 0, 32, 32, 32 )
+
+[node name="tex_hurt" parent="." index="3"]
+
+region_rect = Rect2( 32, 32, 32, 32 )
+
+[node name="tex_hurt2" parent="." index="4"]
+
+region_rect = Rect2( 64, 32, 32, 32 )
+
+[node name="tex_hurt3" parent="." index="5"]
+
+region_rect = Rect2( 96, 32, 32, 32 )
+
+

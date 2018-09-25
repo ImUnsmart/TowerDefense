@@ -79,7 +79,7 @@ region = Rect2( 96, 0, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=10]
 
 flags = 0
 atlas = ExtResource( 9 )
@@ -87,23 +87,23 @@ region = Rect2( 0, 32, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="DynamicFontData" id=10]
+[sub_resource type="DynamicFontData" id=11]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=12]
 
 size = 16
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 10 )
+font_data = SubResource( 11 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Theme" id=12]
+[sub_resource type="Theme" id=13]
 
-default_font = SubResource( 11 )
+default_font = SubResource( 12 )
 _sections_unfolded = [ "Resource" ]
 
 [node name="Game" type="Node"]
@@ -689,7 +689,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 13 )
+texture_normal = SubResource( 10 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -761,7 +761,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-theme = SubResource( 12 )
+theme = SubResource( 13 )
 popup_exclusive = true
 window_title = ""
 resizable = false
