@@ -9,18 +9,19 @@ var wave = 0
 
 var pressed = true
 
-var costs = [ 500, 300, 900, 450 ]
+var costs = [ 500, 300, 1000, 450, 900 ]
 
 const cannon = preload("res://scenes/tower/tower_cannon.tscn")
 const laser = preload("res://scenes/tower/tower_laser.tscn")
 const bank = preload("res://scenes/tower/tower_bank.tscn")
 const lightning = preload("res://scenes/tower/tower_lightning.tscn")
+const flamethrower = preload("res://scenes/tower/tower_flamethrower.tscn")
 
 const explode = preload("res://scenes/particle_explosion.tscn")
 
 func _ready():
 	damage(0)
-	set_money(20000)
+	set_money(50000)
 	pass
 	
 func _process(delta):
@@ -168,6 +169,14 @@ func _on_bank_pressed():
 func _on_lightning_pressed():
 	if money >= costs[3]:
 		var tower = lightning.instance()
+		var pos = get_viewport().get_mouse_position()
+		tower.position = pos
+		$towers.add_child(tower)
+		placing = tower
+
+func _on_flamethrower_pressed():
+	if money >= costs[4]:
+		var tower = flamethrower.instance()
 		var pos = get_viewport().get_mouse_position()
 		tower.position = pos
 		$towers.add_child(tower)

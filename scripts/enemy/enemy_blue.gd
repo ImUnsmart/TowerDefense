@@ -1,4 +1,4 @@
-extends "res://scripts/enemy_red.gd"
+extends "res://scripts/enemy/enemy_red.gd"
 
 func _ready():
 	._ready()

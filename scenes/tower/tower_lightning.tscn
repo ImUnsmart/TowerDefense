@@ -1,15 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/tower/tower_laser.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/tower/lightning.gd" type="Script" id=2]
+[ext_resource path="res://assets/tower/tower_tileset.png" type="Texture" id=3]
 
-
-[node name="tower_lightning" index="0" instance=ExtResource( 1 )]
+[node name="tower_lightning" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 
 [node name="tower" parent="." index="0"]
 
+z_index = 1
+texture = ExtResource( 3 )
+region_enabled = true
 region_rect = Rect2( 0, 32, 32, 32 )
+_sections_unfolded = [ "Region", "Z Index" ]
 
 

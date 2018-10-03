@@ -1,6 +1,6 @@
 extends "res://scripts/tower/tower.gd"
 
-var bullet = preload("res://scenes/tower/cannonball.tscn")
+export var bullet = preload("res://scenes/tower/projectile/cannonball.tscn")
 var bullet_health
 
 func _ready():
@@ -11,7 +11,7 @@ func init():
 	bullet_health = 2
 	display_name = "Cannon"
 	description = "Shoots slow cannonballs that hit multiple enemies."
-	upgrade_costs = [250, 500, 1000, 4000, 25000]
+	upgrade_costs = [250, 500, 1000, 4000, 20000]
 	upgrade_names = ["Longer Range", "Bigger Cannonballs", "Quickshot", "Heavy Metal", "Ultracannon"]
 	upgrade_descriptions = ["Increases range by 33%.", "Cannonballs get +1 pierce.", "The cannon shoots 20% faster.", "The cannonballs get an additional +2 pierce.", "Like a machine gun, but a cannon."]
 	start_radius = 64
@@ -39,7 +39,7 @@ func upgrade():
 	elif level == 4:
 		bullet_health += 2
 	elif level == 5:
-		fire_rate = 0.2
+		fire_rate = 0.3
 		bullet_health = 5
 		inc_radius(32)
 	$shoot_timer.wait_time = fire_rate
@@ -53,7 +53,3 @@ func _on_shoot_timer_timeout():
 	b.velocity = dir
 	b.health = bullet_health
 	$bullets.add_child(b)
-
-func _on_body_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton && placed:
-		game.selected_tower = self
