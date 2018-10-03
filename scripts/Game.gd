@@ -4,7 +4,8 @@ var selected_tower
 var placing
 var lives = 100
 var money = 0
-var wave = 12
+## when you click next wave to start the game, this is incremented, meaning 'wave + 1' is actually the wave you start with.
+var wave = 0
 
 var pressed = true
 
