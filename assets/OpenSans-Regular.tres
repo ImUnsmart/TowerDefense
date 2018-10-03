@@ -8,7 +8,7 @@ _sections_unfolded = [ "Resource" ]
 
 [resource]
 
-size = 24
+size = 23
 use_mipmaps = false
 use_filter = false
 font_data = SubResource( 1 )

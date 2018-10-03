@@ -7,7 +7,7 @@ func init():
 	upgrade_names = ["More Cash", "Better Banking", "Intelligence", "Monopoly", "Enterprise"]
 	upgrade_descriptions = ["Produces an extra $25 per round.", "Produces $50 more every round.", "Produces $75 extra per round", "No one can compare, produces an extra $100 per round", "For when you're too large to fail..."]
 	start_radius = 32
-	cost = 900
+	cost = 1000
 	value = cost
 
 func upgrade():

@@ -35,3 +35,7 @@ func inc_radius(amt):
 	$radius/radius.shape.radius += amt
 	$radius.hide()
 	$radius.show()
+
+func _on_body_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton && placed:
+		game.selected_tower = self

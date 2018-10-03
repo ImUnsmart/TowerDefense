@@ -1,7 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/enemy/enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/enemy_blue.gd" type="Script" id=2]
+[ext_resource path="res://scripts/enemy/enemy_blue.gd" type="Script" id=2]
+
+
+
 
 [node name="Enemy" index="0" instance=ExtResource( 1 )]
 
