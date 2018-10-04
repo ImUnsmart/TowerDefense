@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/map/default.png" type="Texture" id=2]
@@ -10,12 +10,26 @@
 [ext_resource path="res://assets/button_red.png" type="Texture" id=8]
 [ext_resource path="res://assets/tower/tower_tileset.png" type="Texture" id=9]
 
-[sub_resource type="Curve2D" id=15]
+[sub_resource type="Curve2D" id=1]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -6.79463, 68.2252, 0, 0, 0, 0, 88.0332, 85.1325, 0, 0, 0, 0, 104.94, 104.245, 0, 0, 0, 0, 113.027, 129.974, 0, 0, 0, 0, 113.027, 179.96, 0, 0, 0, 0, 117.437, 224.801, 0, 0, 0, 0, 121.848, 284.344, 0, 0, 0, 0, 138.02, 321.835, 0, 0, 0, 0, 163.013, 334.331, 0, 0, 0, 0, 188.742, 329.185, 0, 0, 0, 0, 210.795, 313.748, 0, 0, 0, 0, 237.258, 282.874, 0, 0, 0, 0, 240.199, 279.199, 0, 0, 0, 0, 277.689, 115.272, 0, 0, 0, 0, 299.742, 86.6027, 0, 0, 0, 0, 342.378, 79.2517, 0, 0, 0, 0, 376.927, 77.7815, 0, 0, 0, 0, 403.391, 82.1921, 0, 0, 0, 0, 426.914, 104.245, 0, 0, 0, 0, 446.027, 142.47, 0, 0, 0, 0, 455.583, 172.609, 0, 0, 0, 0, 456.318, 176.285, 0, 0, 0, 0, 462.934, 211.57, 0, 0, 0, 0, 472.49, 257.146, 0, 0, 0, 0, 479.841, 284.344, 0, 0, 0, 0, 496.749, 310.073, 0, 0, 0, 0, 513.656, 318.894, 0, 0, 0, 0, 546, 325.51, 0, 0, 0, 0, 564.378, 328.45, 0, 0, 0, 0, 582.755, 328.45, 0, 0, 0, 0, 601.868, 326.245 )
 }
+
+[sub_resource type="DynamicFontData" id=15]
+
+hinting = 2
+font_path = "res://assets/OpenSans-Regular.ttf"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="DynamicFont" id=16]
+
+size = 18
+use_mipmaps = false
+use_filter = false
+font_data = SubResource( 15 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFontData" id=2]
 
@@ -87,23 +101,31 @@ region = Rect2( 0, 32, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="DynamicFontData" id=11]
+[sub_resource type="AtlasTexture" id=11]
+
+flags = 0
+atlas = ExtResource( 9 )
+region = Rect2( 64, 0, 32, 32 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+
+[sub_resource type="DynamicFontData" id=12]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=13]
 
 size = 16
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 11 )
+font_data = SubResource( 12 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Theme" id=13]
+[sub_resource type="Theme" id=14]
 
-default_font = SubResource( 12 )
+default_font = SubResource( 13 )
 _sections_unfolded = [ "Resource" ]
 
 [node name="Game" type="Node" index="0"]
@@ -115,20 +137,37 @@ script = ExtResource( 1 )
 position = Vector2( 304, 192 )
 texture = ExtResource( 2 )
 
-[node name="base" parent="." index="1" instance=ExtResource( 3 )]
+[node name="path_collider" type="Area2D" parent="." index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_mask = 23
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="path" type="CollisionPolygon2D" parent="path_collider" index="0"]
+
+build_mode = 1
+polygon = PoolVector2Array( -1.64894, 55.7285, 37.711, 54.8834, 87.2981, 65.2848, 113.027, 85.1325, 132.051, 134.369, 132.051, 216.995, 132.037, 266.612, 138.02, 291.695, 155.076, 310.306, 171.835, 315.219, 205.649, 301.987, 229.907, 264.497, 244.172, 214.873, 263.119, 117.655, 273.278, 91.0133, 297.537, 68.2252, 343.358, 62.8392, 381.888, 64.0309, 400.16, 65.2225, 423.974, 77.0464, 447.497, 110.861, 468.815, 178.49, 499.689, 291.695, 521.311, 303.554, 607.905, 309.909, 608.302, 342.084, 524.682, 336.536, 499.862, 331.359, 475.234, 316.662, 462.199, 299.782, 443.457, 202.66, 418.828, 129.238, 393.835, 97.6292, 330.616, 93.9537, 297.28, 108.917, 272.653, 230.465, 260.782, 282.139, 218.146, 333.596, 173.305, 351.974, 141.571, 338.112, 120.915, 321.031, 109.793, 301.17, 99.7948, 273.318, 97.9227, 132.573, 82.8875, 99.8345, 47.6027, 88.0729, 0.556351, 83.6623 )
+
+[node name="base" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 594.94, 325.146 )
 _sections_unfolded = [ "Audio Bus", "Collision", "Transform" ]
 
-[node name="spawner" parent="." index="2" instance=ExtResource( 4 )]
+[node name="spawner" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 16.6676, 78.4112 )
 rotation = 1.5727
 
-[node name="path" type="Path2D" parent="." index="3"]
+[node name="path" type="Path2D" parent="." index="4"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 15 )
+curve = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="follow" type="PathFollow2D" parent="path" index="0"]
@@ -143,7 +182,7 @@ cubic_interp = true
 loop = false
 lookahead = 4.0
 
-[node name="GUI" type="CanvasLayer" parent="." index="4"]
+[node name="GUI" type="CanvasLayer" parent="." index="5"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -208,7 +247,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 6 )
-text = "-1"
+text = "1"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -272,14 +311,14 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 160.0
-margin_bottom = 34.0
+margin_bottom = 35.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = SubResource( 16 )
 align = 1
 uppercase = true
 percent_visible = 1.0
@@ -401,6 +440,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 3 )
+align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -632,9 +672,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -15.0
+margin_left = -23.0
 margin_top = 14.0
-margin_right = 41.0
+margin_right = 47.0
 margin_bottom = 48.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -643,7 +683,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 6 )
-text = "$900"
+text = "$1000"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -699,7 +739,57 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "custom_fonts" ]
 
-[node name="NextWave" type="Button" parent="GUI/buttons" index="4"]
+[node name="flamethrower" type="TextureButton" parent="GUI/buttons" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 640.0
+margin_top = 160.0
+margin_right = 672.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = SubResource( 11 )
+_sections_unfolded = [ "Textures" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="flamethrower_cost" type="Label" parent="GUI/buttons/flamethrower" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -15.0
+margin_top = 11.0
+margin_right = 41.0
+margin_bottom = 45.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 6 )
+text = "$900"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "custom_fonts" ]
+
+[node name="NextWave" type="Button" parent="GUI/buttons" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -742,31 +832,16 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-theme = SubResource( 13 )
+theme = SubResource( 14 )
 popup_exclusive = true
 window_title = ""
 resizable = false
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog", "Grow Direction", "Material", "Popup", "Rect", "Theme", "Visibility" ]
 
-[node name="towers" type="Node" parent="." index="5"]
+[node name="towers" type="Node" parent="." index="6"]
 
-[node name="path_collider" type="Area2D" parent="." index="6"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_mask = 23
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Transform" ]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="path_collider" index="0"]
-
-build_mode = 1
-polygon = PoolVector2Array( -1.64894, 55.7285, 87.2981, 65.2848, 113.027, 85.1325, 128.464, 126.298, 138.02, 291.695, 171.835, 315.219, 205.649, 301.987, 229.907, 264.497, 273.278, 91.0133, 297.537, 68.2252, 383.543, 64.5497, 423.974, 77.0464, 447.497, 110.861, 468.815, 178.49, 499.689, 291.695, 606.278, 311.543, 606.278, 340.947, 524.682, 336.536, 480.576, 320.364, 462.199, 299.782, 418.828, 129.238, 393.835, 97.6292, 330.616, 93.9537, 294.596, 106.45, 260.782, 282.139, 218.146, 333.596, 173.305, 351.974, 127.729, 325.51, 99.7948, 273.318, 101.265, 132.179, 82.8875, 99.8345, 47.6027, 88.0729, 0.556351, 83.6623 )
+[connection signal="body_entered" from="path_collider" to="." method="_on_path_collider_body_entered"]
 
 [connection signal="area_entered" from="base" to="base" method="_on_base_area_entered"]
 
@@ -782,8 +857,8 @@ polygon = PoolVector2Array( -1.64894, 55.7285, 87.2981, 65.2848, 113.027, 85.132
 
 [connection signal="pressed" from="GUI/buttons/lightning" to="." method="_on_lightning_pressed"]
 
-[connection signal="pressed" from="GUI/buttons/NextWave" to="." method="_on_NextWave_pressed"]
+[connection signal="pressed" from="GUI/buttons/flamethrower" to="." method="_on_flamethrower_pressed"]
 
-[connection signal="body_entered" from="path_collider" to="." method="_on_path_collider_body_entered"]
+[connection signal="pressed" from="GUI/buttons/NextWave" to="." method="_on_NextWave_pressed"]
 
 

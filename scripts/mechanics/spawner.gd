@@ -11,15 +11,12 @@ var done = true
 var game
 
 enum enemy {
-	# Basic are the simplest enemies available and can be attacked by anything
-	BASIC,
-	# Blue are only able to be attacked by beams -- first appear wave 10
-	BLUE
-	# Green are only able to be attacked by projectiles
-<<<<<<< HEAD
-	GREEN
-=======
-	#GREEN
+    # Basic are the simplest enemies available and can be attacked by anything
+    BASIC,
+    # Blue are only able to be attacked by beams -- first appear wave 10
+    BLUE
+    # Green are only able to be attacked by projectiles
+    #GREEN
 }
 
 const enemyInfo = {
@@ -45,7 +42,6 @@ enum gap_type {
 	MEDIUM = 50,
 	SMALL = 25,
 	EXTRA_SMALL = 10
->>>>>>> 59000430820cf6ba6117d129571db2fbc5360345
 }
 
 func _ready():

@@ -65,6 +65,10 @@ func _process(delta):
 			placing.get_node("radius").show()
 		selected_tower = null
 	pressed = false
+	if Input.is_action_just_pressed('ui_cancel') && placing != null:
+		placing.queue_free()
+		placing = null
+		selected_tower = null
 
 func _input(event):
 	if event is InputEventMouseButton && event.pressed:
@@ -189,7 +193,3 @@ func _on_sell_pressed():
 	e.set_colors(Color(0.2, 0.2, 0.2, 1), Color(0, 0, 0, 0))
 	selected_tower.queue_free()
 	deselect()
-
-
-func _on_path_collider_body_entered(body):
-	print(body)

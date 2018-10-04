@@ -1,6 +1,6 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=15]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
@@ -8,9 +8,9 @@ _sections_unfolded = [ "Resource" ]
 
 [resource]
 
-size = 23
+size = 24
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 1 )
+font_data = SubResource( 15 )
 _sections_unfolded = [ "Font", "Settings" ]
 
