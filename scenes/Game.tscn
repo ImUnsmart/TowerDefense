@@ -114,7 +114,7 @@ _sections_unfolded = [ "Font", "Settings" ]
 default_font = SubResource( 12 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -135,7 +135,6 @@ rotation = 1.5727
 
 [node name="path" type="Path2D" parent="." index="3"]
 
-editor/display_folded = true
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 15 )
 _sections_unfolded = [ "Transform" ]
@@ -162,7 +161,6 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="Lives" type="Sprite" parent="GUI" index="0"]
 
-editor/display_folded = true
 position = Vector2( 16, 16 )
 texture = ExtResource( 5 )
 region_enabled = true
@@ -195,7 +193,6 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="Wave" type="Sprite" parent="GUI" index="1"]
 
-editor/display_folded = true
 position = Vector2( 16, 80 )
 texture = ExtResource( 5 )
 region_enabled = true
@@ -228,7 +225,6 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="Cash" type="Sprite" parent="GUI" index="2"]
 
-editor/display_folded = true
 position = Vector2( 16, 48 )
 texture = ExtResource( 5 )
 region_enabled = true
@@ -261,7 +257,6 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="upgrade" type="ColorRect" parent="GUI" index="3"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -496,7 +491,6 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="buttons" type="Control" parent="GUI" index="4"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

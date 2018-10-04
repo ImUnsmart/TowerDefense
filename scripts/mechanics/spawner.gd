@@ -9,8 +9,6 @@ var timer = 0
 var wave
 var done = true
 var game
-#var enemys
-#var e_index
 
 enum enemy {
 	# Basic are the simplest enemies available and can be attacked by anything
@@ -19,8 +17,6 @@ enum enemy {
 	BLUE,
 	# Green are only able to be attacked by projectiles
 	GREEN
-	
-	
 }
 
 func _ready():

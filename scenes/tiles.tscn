@@ -30,7 +30,7 @@ render_priority = 0
 shader = SubResource( 2 )
 shader_param/tiled_factor = null
 
-[node name="tiles" type="Node"]
+[node name="tiles" type="Node" index="0"]
 
 [node name="bg_grass" type="Sprite" parent="." index="0"]
 

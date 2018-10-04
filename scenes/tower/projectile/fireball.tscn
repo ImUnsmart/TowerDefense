@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 7.15583
 
-[node name="bullet_fireball" type="Area2D"]
+[node name="bullet_fireball" type="Area2D" index="0"]
 
 z_index = 2
 input_pickable = true

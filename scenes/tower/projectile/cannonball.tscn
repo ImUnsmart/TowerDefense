@@ -1,12 +1,16 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/bullet.gd" type="Script" id=1]
-[ext_resource path="res://assets/icons.png" type="Texture" id=2]
+
+[sub_resource type="StreamTexture" id=2]
+
+flags = 0
+load_path = "res://.import/icons.png-9638851efbee5517d4b4cd55f414e20f.stex"
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 6.86908
+radius = 7.6792
 
 [node name="bullet_fireball" type="Area2D" index="0"]
 
@@ -27,13 +31,14 @@ __meta__ = {
 }
 damage = 1
 health = 1
+speed = 10
 
 [node name="icons" type="Sprite" parent="." index="0"]
 
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+texture = SubResource( 2 )
 region_enabled = true
-region_rect = Rect2( 64, 64, 32, 32 )
+region_rect = Rect2( 64, 0, 32, 32 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="collision" type="CollisionShape2D" parent="." index="1"]

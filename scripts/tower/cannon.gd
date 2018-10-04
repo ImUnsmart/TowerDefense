@@ -26,9 +26,9 @@ func _process(delta):
 	var obj = $radius.get_overlapping_areas()
 	if obj.size() >= 1:
 		target = obj.front()
-		while !"enemy" in target.get_name():
+		print(target.get_name())
+		while !"enemy" in target.get_name().to_lower():
 			obj.remove(0)
-			print(obj)
 			if obj.size() == 0:
 				target = null
 				return
