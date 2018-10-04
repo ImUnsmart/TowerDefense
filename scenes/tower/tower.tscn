@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 14.9668, 15.4422 )
 
-[node name="tower" type="Node2D"]
+[node name="tower" type="Node2D" index="0"]
 
 z_index = 1
 script = ExtResource( 1 )

@@ -14,8 +14,8 @@ var game
 
 
 func _ready():
-	path = get_tree().root.get_node("Game/path/follow")
 	game = get_tree().root.get_node("Game")
+	path = game.get_node("path/follow")
 	pass
 
 #func _on_spawn_timer_timeout():

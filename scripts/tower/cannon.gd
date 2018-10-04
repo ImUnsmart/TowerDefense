@@ -19,12 +19,20 @@ func init():
 	value = cost
 	
 func _process(delta):
-	can_place = $body.get_overlapping_areas().size() < 1 && $body.get_overlapping_bodies().size() < 1 && position.x < get_viewport().get_visible_rect().size.x - 160 && position.x > 0 && position.y > 0 && position.y < get_viewport().get_visible_rect().size.y
+	._process(delta)
 	if !placed:
 		return
 	target = null
-	if $radius.get_overlapping_areas().size() > 0:
-		target = $radius.get_overlapping_areas().front()
+	var obj = $radius.get_overlapping_areas()
+	if obj.size() >= 1:
+		target = obj.front()
+		while !"enemy" in target.get_name():
+			obj.remove(0)
+			print(obj)
+			if obj.size() == 0:
+				target = null
+				return
+			target = obj.front()
 		wr = weakref(target)
 
 func upgrade():
