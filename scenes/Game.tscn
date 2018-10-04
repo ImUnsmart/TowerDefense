@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/map/default.png" type="Texture" id=2]
@@ -84,14 +84,6 @@ filter_clip = false
 flags = 0
 atlas = ExtResource( 9 )
 region = Rect2( 0, 32, 32, 32 )
-margin = Rect2( 0, 0, 0, 0 )
-filter_clip = false
-
-[sub_resource type="AtlasTexture" id=14]
-
-flags = 0
-atlas = ExtResource( 9 )
-region = Rect2( 64, 0, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
@@ -216,7 +208,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 6 )
-text = "1"
+text = "-1"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -640,9 +632,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -23.0
+margin_left = -15.0
 margin_top = 14.0
-margin_right = 47.0
+margin_right = 41.0
 margin_bottom = 48.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -651,7 +643,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 6 )
-text = "$1000"
+text = "$900"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -707,57 +699,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "custom_fonts" ]
 
-[node name="flamethrower" type="TextureButton" parent="GUI/buttons" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 640.0
-margin_top = 160.0
-margin_right = 672.0
-margin_bottom = 192.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-texture_normal = SubResource( 14 )
-_sections_unfolded = [ "Textures" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="flamethrower_cost" type="Label" parent="GUI/buttons/flamethrower" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -15.0
-margin_top = 11.0
-margin_right = 41.0
-margin_bottom = 45.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
-text = "$900"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "custom_fonts" ]
-
-[node name="NextWave" type="Button" parent="GUI/buttons" index="5"]
+[node name="NextWave" type="Button" parent="GUI/buttons" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -839,8 +781,6 @@ polygon = PoolVector2Array( -1.64894, 55.7285, 87.2981, 65.2848, 113.027, 85.132
 [connection signal="pressed" from="GUI/buttons/bank" to="." method="_on_bank_pressed"]
 
 [connection signal="pressed" from="GUI/buttons/lightning" to="." method="_on_lightning_pressed"]
-
-[connection signal="pressed" from="GUI/buttons/flamethrower" to="." method="_on_flamethrower_pressed"]
 
 [connection signal="pressed" from="GUI/buttons/NextWave" to="." method="_on_NextWave_pressed"]
 
