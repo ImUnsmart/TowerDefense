@@ -24,6 +24,12 @@ func _ready():
 	radius.set_shape(CircleShape2D.new())
 	$radius.add_child(radius)
 	$radius/radius.shape.radius = start_radius
+	
+func _process(delta):
+	can_place = $body.get_overlapping_areas().size() < 1 && $body.get_overlapping_bodies().size() < 1 && position.x < get_viewport().get_visible_rect().size.x - 160 && position.x > 0 && position.y > 0 && position.y < get_viewport().get_visible_rect().size.y
+	var path = game.get_node("path_collider")
+	if path in $body.get_overlapping_areas():
+		can_place = false
 
 func get_value():
 	return round(value * 0.79)

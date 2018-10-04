@@ -16,8 +16,8 @@ func _ready():
 func _process(delta):
 	if path != null:
 		path.set_offset(pathPos)
-		position.x = path.position.x + 16
-		position.y = path.position.y + 12
+		position.x = path.position.x
+		position.y = path.position.y 
 	pathPos += speed	
 	
 func hurt(i):

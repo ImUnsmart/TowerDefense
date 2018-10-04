@@ -189,3 +189,7 @@ func _on_sell_pressed():
 	e.set_colors(Color(0.2, 0.2, 0.2, 1), Color(0, 0, 0, 0))
 	selected_tower.queue_free()
 	deselect()
+
+
+func _on_path_collider_body_entered(body):
+	print(body)

@@ -6,7 +6,9 @@
 
 [node name="tower_lightning" instance=ExtResource( 1 )]
 
+z_index = 1
 script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "Z Index" ]
 
 [node name="tower" parent="." index="0"]
 
@@ -15,5 +17,7 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 32, 32, 32 )
 _sections_unfolded = [ "Region", "Z Index" ]
+
+[connection signal="input_event" from="body" to="." method="_on_body_input_event"]
 
 
