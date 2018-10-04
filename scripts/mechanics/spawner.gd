@@ -16,11 +16,34 @@ enum enemy {
 	# Basic are the simplest enemies available and can be attacked by anything
 	BASIC,
 	# Blue are only able to be attacked by beams -- first appear wave 10
-	BLUE,
+	BLUE
 	# Green are only able to be attacked by projectiles
-	GREEN
-	
-	
+	#GREEN
+}
+
+const enemyInfo = {
+	"BASIC":{"FIRST_ROUND":1,"STAT_MULTIPLIERS":{"HEALTH":1,"SPEED":1,"DAMAGE":1},"INTRODUCE":false},
+	"BLUE":{"FIRST_ROUND":10,"STAT_MULTIPLIERS":{"HEALTH":1.5,"SPEED":1,"DAMAGE":1},"INTRODUCE":true,"INTRO":["Blue Enemies", "Blue Enemies are have more health and are immune to projectiles."]}
+}
+
+enum subType {
+	NORMAL,
+	SPEEDY,
+	TANKY
+}
+
+const enemySubtypesInfo = {
+	"NORMAL":{"HEALTH":1,"SPEED":1,"DAMAGE":1},
+	"SPEEDY":{"HEALTH":0.5,"SPEED":2,"DAMAGE":1},
+	"TANKY":{"HEALTH":3,"SPEED":0.5,"DAMAGE":1}
+}
+
+enum gap_type {
+	EXTRA_LARGE = 125,
+	LARGE = 100,
+	MEDIUM = 50,
+	SMALL = 25,
+	EXTRA_SMALL = 10
 }
 
 func _ready():
@@ -57,8 +80,9 @@ func _process(delta):
 	if !spawning && $enemies.get_child_count() == 0 && !done:
 		game.wave_money()
 		done = true
-		if wave == 9:
-			game.show_dialog("Blue Enemies", "Blue Enemies are have more health and are immune to projectiles.")
+		for type in enemy.keys():
+			if enemyInfo[type]["FIRST_ROUND"] - 1 == wave && enemyInfo[type]["INTRODUCE"]:
+				game.show_dialog(enemyInfo[type]["INTRO"][0],enemyInfo[type]["INTRO"][1])
 
 func spawn_enemy(type, health, speed, damage):
 	var e
@@ -140,9 +164,8 @@ func waves():
 		if wave == 12:
 			if timer % 50 == 0:
 				spawn_enemy(enemy.BASIC, 5, 1, 1)
-			if timer % 50 == 0:
 				spawn_enemy(enemy.BASIC, 3, 2, 1)
-			if spawned == 35:
+			if spawned >= 35:
 				spawning = false
 		if wave == 13:
 			print(spawning)
