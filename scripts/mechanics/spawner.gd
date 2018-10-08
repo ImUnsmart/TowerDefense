@@ -6,7 +6,6 @@ var path
 var spawning = false
 var spawned = 0
 var timer = 0
-var wave
 var done = true
 var game
 
@@ -20,8 +19,8 @@ enum enemy {
 }
 
 const enemyInfo = {
-	"BASIC":{"FIRST_ROUND":1,"STAT_MULTIPLIERS":{"HEALTH":1,"SPEED":1,"DAMAGE":1},"INTRODUCE":false},
-	"BLUE":{"FIRST_ROUND":10,"STAT_MULTIPLIERS":{"HEALTH":1.5,"SPEED":1,"DAMAGE":1},"INTRODUCE":true,"INTRO":["Blue Enemies", "Blue Enemies are have more health and are immune to projectiles."]}
+	"BASIC":{"FIRST_ROUND":1,"STAT_MULTIPLIERS":{"HEALTH":1,"SPEED":100,"DAMAGE":1},"INTRODUCE":false},
+	"BLUE":{"FIRST_ROUND":10,"STAT_MULTIPLIERS":{"HEALTH":1.5,"SPEED":100,"DAMAGE":1},"INTRODUCE":true,"INTRO":["Blue Enemies", "Blue Enemies are have more health and are immune to projectiles."]}
 }
 
 enum subType {
@@ -79,7 +78,7 @@ func _process(delta):
 		game.wave_money()
 		done = true
 		for type in enemy.keys():
-			if enemyInfo[type]["FIRST_ROUND"] - 1 == wave && enemyInfo[type]["INTRODUCE"]:
+			if enemyInfo[type]["FIRST_ROUND"] - 1 == game.wave && enemyInfo[type]["INTRODUCE"]:
 				game.show_dialog(enemyInfo[type]["INTRO"][0],enemyInfo[type]["INTRO"][1])
 
 func spawn_enemy(type, health, speed, damage):
@@ -96,83 +95,83 @@ func spawn_enemy(type, health, speed, damage):
 	$enemies.add_child(e)
 	spawned += 1
 	
-func start(wave):
+func start():
 	spawning = true
 	spawned = 0
 	done = false
-	self.wave = wave
 	
 ## [ type, count, delay, health, speed, damage ]=
 	
 func waves():
+	var wave = game.wave
 	if spawning:
 		if wave == 1:
 			if timer % 50 == 0:
-				spawn_enemy(enemy.BASIC, 1, 1, 1)
+				spawn_enemy(enemy.BASIC, 1, 75, 1)
 			if spawned == 10:
 				spawning = false
 		if wave == 2:
 			if timer % 25 == 0:
-				spawn_enemy(enemy.BASIC, 1, 1, 1)
+				spawn_enemy(enemy.BASIC, 1, 75, 1)
 			if spawned == 15:
 				spawning = false
 		if wave == 3:
 			if timer % 50 == 0:
-				spawn_enemy(enemy.BASIC, 1, 2, 1)
+				spawn_enemy(enemy.BASIC, 1, 150, 1)
 			if spawned == 20:
 				spawning = false
 		if wave == 4:
 			if timer % 60 == 0:
-				spawn_enemy(enemy.BASIC, 2, 1, 1)
+				spawn_enemy(enemy.BASIC, 2, 75, 1)
 			if spawned == 10:
 				spawning = false
 		if wave == 5:
-			spawn_enemy(enemy.BASIC, 8, 1, 1)
+			spawn_enemy(enemy.BASIC, 8, 75, 1)
 			spawning = false
 		if wave == 6:
 			if timer % 60 == 0:
-				spawn_enemy(enemy.BASIC, 2, 2, 1)
+				spawn_enemy(enemy.BASIC, 2, 150, 1)
 			if spawned == 15:
 				spawning = false
 		if wave == 7:
 			if timer % 10 == 0:
-				spawn_enemy(enemy.BASIC, 1, 1, 1)
+				spawn_enemy(enemy.BASIC, 1, 75, 1)
 			if spawned == 25:
 				spawning = false
 		if wave == 8:
 			if timer % 100 == 0:
-				spawn_enemy(enemy.BASIC, 6, 1, 1)
+				spawn_enemy(enemy.BASIC, 6, 75, 1)
 			if spawned == 5:
 				spawning = false
 		if wave == 9:
 			if timer % 125 == 0:
-				spawn_enemy(enemy.BASIC, 5, 2, 1)
+				spawn_enemy(enemy.BASIC, 5, 150, 1)
 			if spawned == 10:
 				spawning = false
 		if wave == 10:
-			spawn_enemy(enemy.BLUE, 10, 1, 2)
+			spawn_enemy(enemy.BLUE, 10, 75, 2)
 			spawning = false
 		if wave == 11:
 			if timer % 125 == 0:
-				spawn_enemy(enemy.BASIC, 6, 1, 1)
+				spawn_enemy(enemy.BASIC, 6, 75, 1)
 			if timer % 50 == 0:
-				spawn_enemy(enemy.BASIC, 3, 2, 1)
+				spawn_enemy(enemy.BASIC, 3, 150, 1)
 			if spawned == 30:
 				spawning = false
 		if wave == 12:
 			if timer % 50 == 0:
-				spawn_enemy(enemy.BASIC, 5, 1, 1)
-				spawn_enemy(enemy.BASIC, 3, 2, 1)
+				spawn_enemy(enemy.BASIC, 5, 75, 1)
+				spawn_enemy(enemy.BASIC, 3, 75, 1)
 			if spawned >= 35:
 				spawning = false
 		if wave == 13:
 			print(spawning)
 			if spawned <= 20:
 				if timer % 25 == 0:
-					spawn_enemy(enemy.BASIC, 5, 1, 1)
+					spawn_enemy(enemy.BASIC, 5, 75, 1)
 			elif spawned <= 23:
 				if timer % 50 == 0:
-					spawn_enemy(enemy.BLUE, 11, 1, 2)
+					spawn_enemy(enemy.BLUE, 11, 75, 2)
 
 #func start(wave):
 #	spawning = true

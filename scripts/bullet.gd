@@ -9,7 +9,7 @@ func _ready():
 	pass
 	
 func _process(delta):
-	position += velocity * speed
+	position += velocity * speed * delta
 	if health < 1:
 		queue_free()
 

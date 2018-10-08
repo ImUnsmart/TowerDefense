@@ -144,7 +144,7 @@ _sections_unfolded = [ "Font", "Settings" ]
 default_font = SubResource( 17 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -848,6 +848,32 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
+[node name="FastForward" type="Button" parent="GUI/buttons" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 640.0
+margin_top = 336.0
+margin_right = 736.0
+margin_bottom = 368.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Next Wave"
+flat = false
+align = 1
+_sections_unfolded = [ "Rect" ]
+
 [node name="Information" type="AcceptDialog" parent="GUI" index="5"]
 
 visible = false
@@ -900,5 +926,7 @@ bus = "Master"
 [connection signal="pressed" from="GUI/buttons/flamethrower" to="." method="_on_flamethrower_pressed"]
 
 [connection signal="pressed" from="GUI/buttons/NextWave" to="." method="_on_NextWave_pressed"]
+
+[connection signal="pressed" from="GUI/buttons/FastForward" to="." method="_on_FastForward_pressed"]
 
 

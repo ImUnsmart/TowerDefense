@@ -1,12 +1,12 @@
 extends "res://scripts/tower/tower.gd"
 
-export var bullet = preload("res://scenes/tower/projectile/cannonball.tscn")
+const bullet = preload("res://scenes/tower/projectile/cannonball.tscn")
+
 var bullet_health
 var target_rot
 
 func _ready():
 	._ready()
-	$shoot_timer.wait_time = fire_rate
 
 func init():
 	bullet_health = 2
@@ -18,6 +18,8 @@ func init():
 	start_radius = 64
 	cost = 500
 	value = cost
+	$shoot_timer.wait_time = fire_rate
+	$shoot_timer.start()
 	
 func _process(delta):
 	._process(delta)

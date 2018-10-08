@@ -19,7 +19,7 @@ func _process(delta):
 		path.set_offset(pathPos)
 		position.x = path.position.x
 		position.y = path.position.y 
-	pathPos += speed	
+	pathPos += speed * delta
 	
 func hurt(i):
 	health -= i

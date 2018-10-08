@@ -7,6 +7,8 @@ var money = 0
 ## when you click next wave to start the game, this is incremented, meaning 'wave + 1' is actually the wave you start with.
 var wave = 0
 
+var fast_forward = false
+
 var pressed = true
 
 var costs = [ 500, 300, 1000, 450, 900 ]
@@ -57,8 +59,16 @@ func _process(delta):
 			$GUI/buttons.show()
 	if !$spawner.spawning && $spawner.get_node("enemies").get_child_count() == 0:
 		$GUI/buttons/NextWave.show()
+		$GUI/buttons/FastForward.hide()
+		if Engine.time_scale == 2:
+			Engine.time_scale = 1
 	else:
-		$GUI/buttons/NextWave.hide()		
+		$GUI/buttons/NextWave.hide()	
+		$GUI/buttons/FastForward.show()
+		if fast_forward :
+			Engine.time_scale = 2
+		else:
+			Engine.time_scale = 1
 	if placing != null:
 		placing.position = get_viewport().get_mouse_position()
 		if !placing.get_node("radius").is_visible_in_tree():
@@ -99,7 +109,7 @@ func add_money(i):
 func inc_wave():
 	wave += 1
 	$GUI/Wave/Label.text = String(wave)
-	$spawner.start(wave)
+	$spawner.start()
 
 func wave_money():
 	add_money(101 - wave)
@@ -193,3 +203,11 @@ func _on_sell_pressed():
 	e.set_colors(Color(0.2, 0.2, 0.2, 1), Color(0, 0, 0, 0))
 	selected_tower.queue_free()
 	deselect()
+
+func _on_FastForward_pressed():
+	if fast_forward:
+		fast_forward = false
+		$GUI/buttons/FastForward.text = "Fast Forward"
+	else:
+		fast_forward = true
+		$GUI/buttons/FastForward.text = "Slow Down"

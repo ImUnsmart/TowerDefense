@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 7.15583
 
-[node name="bullet_fireball" type="Area2D" index="0"]
+[node name="bullet_fireball" type="Area2D"]
 
 z_index = 2
 input_pickable = true
@@ -27,7 +27,7 @@ __meta__ = {
 }
 damage = 1
 health = 1
-speed = 12
+speed = 300
 
 [node name="icons" type="Sprite" parent="." index="0"]
 

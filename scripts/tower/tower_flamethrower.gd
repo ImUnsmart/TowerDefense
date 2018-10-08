@@ -1,8 +1,9 @@
 extends "res://scripts/tower/tower.gd"
 
+const bullet = preload("res://scenes/tower/projectile/fireball.tscn")
+
 var flame = false
 var bullet_health = 1
-onready var bullet = preload("res://scenes/tower/projectile/fireball.tscn")
 
 func _ready():
 	._ready()
