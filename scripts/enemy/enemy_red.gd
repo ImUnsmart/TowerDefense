@@ -8,6 +8,7 @@ var damage = 1
 var worth = 10
 var maxhp
 var dot_count
+onready var game = get_tree().root.get_node("Game")
 
 func _ready():
 	maxhp = health
@@ -24,8 +25,12 @@ func hurt(i):
 	health -= i
 	if health < 1:
 		queue_free()
-		get_tree().root.get_node("Game").add_money(worth)
-		var e = get_tree().root.get_node("Game").explosion(position)
+		game.add_money(worth)
+		var h = $hurt
+		remove_child(h)
+		game.add_child(h)
+		h.start()
+		var e = game.explosion(position)
 		e.set_colors(Color(1, 0, 0, 1), Color(0, 0, 0, 0))
 		return
 	var hp = float(health) / maxhp

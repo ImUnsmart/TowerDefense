@@ -27,9 +27,20 @@ func _ready():
 	
 func _process(delta):
 	can_place = $body.get_overlapping_areas().size() < 1 && $body.get_overlapping_bodies().size() < 1 && position.x < get_viewport().get_visible_rect().size.x - 160 && position.x > 0 && position.y > 0 && position.y < get_viewport().get_visible_rect().size.y
-	var path = game.get_node("path_collider")
+	var path = game.get_node("map_objects")
 	if path in $body.get_overlapping_areas():
 		can_place = false
+	target = null
+	var obj = $radius.get_overlapping_areas()
+	if obj.size() >= 1:
+		target = obj.front()
+		while !"enemy" in target.get_name().to_lower():
+			obj.remove(0)
+			if obj.size() == 0:
+				target = null
+				return
+			target = obj.front()
+		wr = weakref(target)
 
 func get_value():
 	return round(value * 0.79)

@@ -1,134 +1,150 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scripts/Game.gd" type="Script" id=1]
-[ext_resource path="res://assets/map/default.png" type="Texture" id=2]
-[ext_resource path="res://scenes/base.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/spawner.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/icons.png" type="Texture" id=5]
-[ext_resource path="res://assets/OpenSans-Regular.tres" type="DynamicFont" id=6]
-[ext_resource path="res://assets/button_green.png" type="Texture" id=7]
-[ext_resource path="res://assets/button_red.png" type="Texture" id=8]
-[ext_resource path="res://assets/tower/tower_tileset.png" type="Texture" id=9]
+[ext_resource path="res://assets/map/default/default.png" type="Texture" id=2]
+[ext_resource path="res://assets/map/default/water.png" type="Texture" id=3]
+[ext_resource path="res://scenes/base.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/spawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/icons.png" type="Texture" id=6]
+[ext_resource path="res://assets/OpenSans-Regular.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/button_green.png" type="Texture" id=8]
+[ext_resource path="res://assets/button_red.png" type="Texture" id=9]
+[ext_resource path="res://assets/tower/tower_tileset.png" type="Texture" id=10]
+[ext_resource path="res://assets/sound/test.wav" type="AudioStream" id=11]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Shader" id=1]
+
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+void vertex() {
+	VERTEX.x += cos(TIME) * sin(TIME) * 2.0;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+
+render_priority = 0
+shader = SubResource( 1 )
+
+[sub_resource type="Curve2D" id=3]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -6.79463, 68.2252, 0, 0, 0, 0, 69.8022, 75.1252, 0, 0, 0, 0, 95.6214, 93.7944, 0, 0, 0, 0, 113.893, 133.516, 0, 0, 0, 0, 118.66, 285.254, 0, 0, 0, 0, 130.577, 307.895, 0, 0, 0, 0, 145.274, 322.592, 0, 0, 0, 0, 166.326, 335.303, 0, 0, 0, 0, 199.693, 326.167, 0, 0, 0, 0, 231.073, 292.006, 0, 0, 0, 0, 250.477, 248.943, 0, 0, 0, 0, 268.389, 168.669, 0, 0, 0, 0, 275.687, 126.209, 0, 0, 0, 0, 282.321, 104.316, 0, 0, 0, 0, 299.742, 86.6027, 0, 0, 0, 0, 342.378, 79.2517, 0, 0, 0, 0, 376.927, 77.7815, 0, 0, 0, 0, 403.391, 82.1921, 0, 0, 0, 0, 426.914, 104.245, 0, 0, 0, 0, 446.027, 142.47, 0, 0, 0, 0, 455.583, 172.609, 0, 0, 0, 0, 456.318, 176.285, 0, 0, 0, 0, 462.934, 211.57, 0, 0, 0, 0, 472.49, 257.146, 0, 0, 0, 0, 479.841, 284.344, 0, 0, 0, 0, 496.749, 310.073, 0, 0, 0, 0, 513.656, 318.894, 0, 0, 0, 0, 546, 325.51, 0, 0, 0, 0, 564.378, 328.45, 0, 0, 0, 0, 582.755, 328.45, 0, 0, 0, 0, 601.868, 326.245 )
 }
 
-[sub_resource type="DynamicFontData" id=15]
+[sub_resource type="DynamicFontData" id=4]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=5]
 
 size = 18
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 15 )
+font_data = SubResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFontData" id=2]
+[sub_resource type="DynamicFontData" id=6]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=7]
 
 size = 16
 use_mipmaps = false
 use_filter = false
 extra_spacing_top = -6
-font_data = SubResource( 2 )
+font_data = SubResource( 6 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=8]
 
 size = 14
 use_mipmaps = false
 use_filter = false
 extra_spacing_top = -8
-font_data = SubResource( 2 )
+font_data = SubResource( 6 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[sub_resource type="DynamicFontData" id=5]
+[sub_resource type="DynamicFontData" id=9]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=10]
 
 size = 18
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 5 )
+font_data = SubResource( 9 )
 _sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="AtlasTexture" id=7]
-
-flags = 0
-atlas = ExtResource( 9 )
-region = Rect2( 32, 0, 32, 32 )
-margin = Rect2( 0, 0, 0, 0 )
-filter_clip = false
-
-[sub_resource type="AtlasTexture" id=8]
-
-flags = 0
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 32, 32 )
-margin = Rect2( 0, 0, 0, 0 )
-filter_clip = false
-
-[sub_resource type="AtlasTexture" id=9]
-
-flags = 0
-atlas = ExtResource( 9 )
-region = Rect2( 96, 0, 32, 32 )
-margin = Rect2( 0, 0, 0, 0 )
-filter_clip = false
-
-[sub_resource type="AtlasTexture" id=10]
-
-flags = 0
-atlas = ExtResource( 9 )
-region = Rect2( 0, 32, 32, 32 )
-margin = Rect2( 0, 0, 0, 0 )
-filter_clip = false
 
 [sub_resource type="AtlasTexture" id=11]
 
 flags = 0
-atlas = ExtResource( 9 )
+atlas = ExtResource( 10 )
+region = Rect2( 32, 0, 32, 32 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+
+[sub_resource type="AtlasTexture" id=12]
+
+flags = 0
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 32, 32 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+
+[sub_resource type="AtlasTexture" id=13]
+
+flags = 0
+atlas = ExtResource( 10 )
+region = Rect2( 96, 0, 32, 32 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+
+[sub_resource type="AtlasTexture" id=14]
+
+flags = 0
+atlas = ExtResource( 10 )
+region = Rect2( 0, 32, 32, 32 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+
+[sub_resource type="AtlasTexture" id=15]
+
+flags = 0
+atlas = ExtResource( 10 )
 region = Rect2( 64, 0, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="DynamicFontData" id=12]
+[sub_resource type="DynamicFontData" id=16]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=17]
 
 size = 16
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 12 )
+font_data = SubResource( 16 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Theme" id=14]
+[sub_resource type="Theme" id=18]
 
-default_font = SubResource( 13 )
+default_font = SubResource( 17 )
 _sections_unfolded = [ "Resource" ]
 
-[node name="Game" type="Node" index="0"]
+[node name="Game" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -137,8 +153,15 @@ script = ExtResource( 1 )
 position = Vector2( 304, 192 )
 texture = ExtResource( 2 )
 
-[node name="path_collider" type="Area2D" parent="." index="1"]
+[node name="water" type="Sprite" parent="map" index="0"]
 
+material = SubResource( 2 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Material" ]
+
+[node name="map_objects" type="Area2D" parent="." index="1"]
+
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -149,17 +172,27 @@ audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="path" type="CollisionPolygon2D" parent="path_collider" index="0"]
+[node name="path" type="CollisionPolygon2D" parent="map_objects" index="0"]
 
 build_mode = 1
-polygon = PoolVector2Array( -1.64894, 55.7285, 37.711, 54.8834, 87.2981, 65.2848, 113.027, 85.1325, 132.051, 134.369, 132.051, 216.995, 132.037, 266.612, 138.02, 291.695, 155.076, 310.306, 171.835, 315.219, 205.649, 301.987, 229.907, 264.497, 244.172, 214.873, 263.119, 117.655, 273.278, 91.0133, 297.537, 68.2252, 343.358, 62.8392, 381.888, 64.0309, 400.16, 65.2225, 423.974, 77.0464, 447.497, 110.861, 468.815, 178.49, 499.689, 291.695, 521.311, 303.554, 607.905, 309.909, 608.302, 342.084, 524.682, 336.536, 499.862, 331.359, 475.234, 316.662, 462.199, 299.782, 443.457, 202.66, 418.828, 129.238, 393.835, 97.6292, 330.616, 93.9537, 297.28, 108.917, 272.653, 230.465, 260.782, 282.139, 218.146, 333.596, 173.305, 351.974, 141.571, 338.112, 120.915, 321.031, 109.793, 301.17, 99.7948, 273.318, 97.9227, 132.573, 82.8875, 99.8345, 47.6027, 88.0729, 0.556351, 83.6623 )
+polygon = PoolVector2Array( -1.64894, 55.7285, 37.711, 54.8834, 87.2981, 65.2848, 113.027, 85.1325, 132.051, 134.369, 132.051, 216.995, 132.037, 266.612, 138.02, 291.695, 155.076, 310.306, 171.835, 315.219, 205.649, 301.987, 229.907, 264.497, 244.172, 214.873, 263.119, 117.655, 273.278, 91.0133, 297.537, 68.2252, 343.358, 62.8392, 381.888, 64.0309, 400.16, 65.2225, 423.974, 77.0464, 447.497, 110.861, 468.815, 178.49, 499.689, 291.695, 521.311, 303.554, 607.905, 309.909, 608.302, 342.084, 524.682, 336.536, 499.862, 331.359, 475.234, 316.662, 462.199, 299.782, 443.457, 202.66, 418.828, 129.238, 393.835, 97.6292, 330.616, 93.9537, 297.28, 108.917, 272.653, 230.465, 256, 288, 218.146, 333.596, 173.305, 351.974, 141.571, 338.112, 120.915, 321.031, 109.793, 301.17, 99.7948, 273.318, 97.9227, 132.573, 82.8875, 99.8345, 47.6027, 88.0729, 0.556351, 83.6623 )
 
-[node name="base" parent="." index="2" instance=ExtResource( 3 )]
+[node name="water" type="CollisionPolygon2D" parent="map_objects" index="1"]
+
+build_mode = 1
+polygon = PoolVector2Array( 89.5163, 0.57077, 92.5973, 18.1761, 132.649, 35.7814, 134.85, 68.7913, 149.374, 89.0374, 190.307, 94.319, 216.715, 70.1117, 238.281, 50.7459, 249.725, 30.0597, 251.925, 0.130638 )
+
+[node name="water2" type="CollisionPolygon2D" parent="map_objects" index="2"]
+
+build_mode = 1
+polygon = PoolVector2Array( 235.2, 383.926, 253.686, 368.081, 288.016, 365.881, 326.748, 343.874, 381.324, 346.955, 419.176, 371.162, 435.901, 370.722, 460.548, 383.926 )
+
+[node name="base" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 594.94, 325.146 )
 _sections_unfolded = [ "Audio Bus", "Collision", "Transform" ]
 
-[node name="spawner" parent="." index="3" instance=ExtResource( 4 )]
+[node name="spawner" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 16.6676, 78.4112 )
 rotation = 1.5727
@@ -167,7 +200,7 @@ rotation = 1.5727
 [node name="path" type="Path2D" parent="." index="4"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 1 )
+curve = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="follow" type="PathFollow2D" parent="path" index="0"]
@@ -193,7 +226,7 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 [node name="Lives" type="Sprite" parent="GUI" index="0"]
 
 position = Vector2( 16, 16 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 64, 32, 32, 32 )
 _sections_unfolded = [ "Transform" ]
@@ -214,7 +247,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "-1"
 align = 1
 percent_visible = 1.0
@@ -225,7 +258,7 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 [node name="Wave" type="Sprite" parent="GUI" index="1"]
 
 position = Vector2( 16, 80 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 _sections_unfolded = [ "Region", "Transform" ]
@@ -246,7 +279,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "1"
 align = 1
 percent_visible = 1.0
@@ -257,7 +290,7 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 [node name="Cash" type="Sprite" parent="GUI" index="2"]
 
 position = Vector2( 16, 48 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 96, 32, 32, 32 )
 _sections_unfolded = [ "Transform" ]
@@ -278,7 +311,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "-1"
 align = 1
 percent_visible = 1.0
@@ -318,7 +351,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 5 )
 align = 1
 uppercase = true
 percent_visible = 1.0
@@ -341,7 +374,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 autowrap = true
 percent_visible = 1.0
@@ -370,8 +403,8 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 7 )
-texture_disabled = ExtResource( 8 )
+texture_normal = ExtResource( 8 )
+texture_disabled = ExtResource( 9 )
 expand = true
 _sections_unfolded = [ "Textures" ]
 
@@ -391,7 +424,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 8 )
 align = 1
 valign = 1
 autowrap = true
@@ -415,7 +448,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -439,7 +472,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 7 )
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -469,7 +502,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 8 )
+texture_normal = ExtResource( 9 )
 expand = true
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
@@ -491,7 +524,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 10 )
 text = "$10000"
 align = 1
 clip_text = true
@@ -514,7 +547,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "Sell:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -560,7 +593,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 7 )
+texture_normal = SubResource( 11 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -582,7 +615,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "$500"
 percent_visible = 1.0
 lines_skipped = 0
@@ -610,7 +643,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 8 )
+texture_normal = SubResource( 12 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -632,7 +665,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "$300"
 percent_visible = 1.0
 lines_skipped = 0
@@ -660,7 +693,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 9 )
+texture_normal = SubResource( 13 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -682,7 +715,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "$1000"
 percent_visible = 1.0
 lines_skipped = 0
@@ -710,7 +743,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 10 )
+texture_normal = SubResource( 14 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -732,7 +765,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "$450"
 percent_visible = 1.0
 lines_skipped = 0
@@ -760,7 +793,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 11 )
+texture_normal = SubResource( 15 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -782,7 +815,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "$900"
 percent_visible = 1.0
 lines_skipped = 0
@@ -832,7 +865,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-theme = SubResource( 14 )
+theme = SubResource( 18 )
 popup_exclusive = true
 window_title = ""
 resizable = false
@@ -841,7 +874,14 @@ _sections_unfolded = [ "Dialog", "Grow Direction", "Material", "Popup", "Rect", 
 
 [node name="towers" type="Node" parent="." index="6"]
 
-[connection signal="body_entered" from="path_collider" to="." method="_on_path_collider_body_entered"]
+[node name="music" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 11 )
+volume_db = -10.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 [connection signal="area_entered" from="base" to="base" method="_on_base_area_entered"]
 

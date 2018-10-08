@@ -1,13 +1,14 @@
-extends "res://scripts/tower/cannon.gd"
+extends "res://scripts/tower/tower.gd"
 
 var flame = false
+var bullet_health = 1
+onready var bullet = preload("res://scenes/tower/projectile/fireball.tscn")
 
 func _ready():
 	._ready()
 	$shoot_timer.wait_time = fire_rate
 
 func init():
-	bullet_health = 1
 	fire_rate = 0.55
 	display_name = "Flamethrower"
 	description = "Blasts fire at enemies very quickly."
@@ -17,6 +18,8 @@ func init():
 	start_radius = 64
 	cost = 900
 	value = cost
+	$shoot_timer.wait_time = fire_rate
+	$shoot_timer.start()
 	
 func _process(delta):
 	._process(delta)
@@ -40,6 +43,8 @@ func upgrade():
 func _on_shoot_timer_timeout():
 	if target == null or !wr.get_ref():
 		return
+	print(target)
+	$shoot.play()
 	var b = bullet.instance()
 	b.position = position
 	var dir = Vector2(target.position.x - b.position.x, target.position.y - b.position.y).normalized()

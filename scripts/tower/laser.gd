@@ -1,4 +1,4 @@
-extends "res://scripts/tower/cannon.gd"
+extends "res://scripts/tower/tower.gd"
 
 var damage = 1
 var fire = false
@@ -15,6 +15,8 @@ func init():
 	start_radius = 48
 	cost = 300
 	value = cost
+	$shoot_timer.wait_time = fire_rate
+	$shoot_timer.start()
 
 func upgrade():
 	value += upgrade_costs[level]

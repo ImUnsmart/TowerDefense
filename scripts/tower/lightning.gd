@@ -16,6 +16,8 @@ func init():
 	cost = 450
 	value = cost
 	color = Color(0, 1, 1)
+	$shoot_timer.wait_time = fire_rate
+	$shoot_timer.start()
 
 func upgrade():
 	value += upgrade_costs[level]

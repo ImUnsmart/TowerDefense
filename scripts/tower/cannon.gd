@@ -2,6 +2,7 @@ extends "res://scripts/tower/tower.gd"
 
 export var bullet = preload("res://scenes/tower/projectile/cannonball.tscn")
 var bullet_health
+var target_rot
 
 func _ready():
 	._ready()
@@ -22,19 +23,9 @@ func _process(delta):
 	._process(delta)
 	if !placed:
 		return
-	target = null
-	var obj = $radius.get_overlapping_areas()
-	if obj.size() >= 1:
-		target = obj.front()
-		print(target.get_name())
-		while !"enemy" in target.get_name().to_lower():
-			obj.remove(0)
-			if obj.size() == 0:
-				target = null
-				return
-			target = obj.front()
-		wr = weakref(target)
-
+	if target != null && wr.get_ref():
+		$barrel.look_at(target.position)
+		
 func upgrade():
 	value += upgrade_costs[level]
 	level += 1
@@ -56,8 +47,9 @@ func _on_shoot_timer_timeout():
 	if target == null or !wr.get_ref():
 		return
 	var b = bullet.instance()
-	b.position = position
+	b.position = position + (Vector2(28, 28) * Vector2(cos($barrel.rotation), sin($barrel.rotation)))
 	var dir = Vector2(target.position.x - b.position.x, target.position.y - b.position.y).normalized()
 	b.velocity = dir
 	b.health = bullet_health
 	$bullets.add_child(b)
+	$Shoot.play()
