@@ -8,10 +8,11 @@ var damage = 1
 var worth = 10
 var maxhp
 var dot_count
-onready var game = get_tree().root.get_node("Game")
+var game
 
 func _ready():
 	maxhp = health
+	game = get_tree().root.get_node("Game")
 	pass
 	
 func _process(delta):
@@ -27,9 +28,10 @@ func hurt(i):
 		queue_free()
 		game.add_money(worth)
 		var h = $hurt
-		remove_child(h)
-		game.add_child(h)
-		h.start()
+		if h != null:
+			remove_child(h)
+			game.add_child(h)
+			h.start()
 		var e = game.explosion(position)
 		e.set_colors(Color(1, 0, 0, 1), Color(0, 0, 0, 0))
 		return
