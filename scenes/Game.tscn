@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/map/default/default.png" type="Texture" id=2]
@@ -12,26 +12,26 @@
 [ext_resource path="res://assets/tower/tower_tileset.png" type="Texture" id=10]
 [ext_resource path="res://assets/sound/test.wav" type="AudioStream" id=11]
 
-[sub_resource type="Shader" id=1]
-
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-void vertex() {
-	VERTEX.x += cos(TIME) * sin(TIME) * 2.0;
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-
-render_priority = 0
-shader = SubResource( 1 )
-
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=1]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -6.79463, 68.2252, 0, 0, 0, 0, 69.8022, 75.1252, 0, 0, 0, 0, 95.6214, 93.7944, 0, 0, 0, 0, 113.893, 133.516, 0, 0, 0, 0, 118.66, 285.254, 0, 0, 0, 0, 130.577, 307.895, 0, 0, 0, 0, 145.274, 322.592, 0, 0, 0, 0, 166.326, 335.303, 0, 0, 0, 0, 199.693, 326.167, 0, 0, 0, 0, 231.073, 292.006, 0, 0, 0, 0, 250.477, 248.943, 0, 0, 0, 0, 268.389, 168.669, 0, 0, 0, 0, 275.687, 126.209, 0, 0, 0, 0, 282.321, 104.316, 0, 0, 0, 0, 299.742, 86.6027, 0, 0, 0, 0, 342.378, 79.2517, 0, 0, 0, 0, 376.927, 77.7815, 0, 0, 0, 0, 403.391, 82.1921, 0, 0, 0, 0, 426.914, 104.245, 0, 0, 0, 0, 446.027, 142.47, 0, 0, 0, 0, 455.583, 172.609, 0, 0, 0, 0, 456.318, 176.285, 0, 0, 0, 0, 462.934, 211.57, 0, 0, 0, 0, 472.49, 257.146, 0, 0, 0, 0, 479.841, 284.344, 0, 0, 0, 0, 496.749, 310.073, 0, 0, 0, 0, 513.656, 318.894, 0, 0, 0, 0, 546, 325.51, 0, 0, 0, 0, 564.378, 328.45, 0, 0, 0, 0, 582.755, 328.45, 0, 0, 0, 0, 601.868, 326.245 )
 }
+
+[sub_resource type="DynamicFontData" id=2]
+
+hinting = 2
+font_path = "res://assets/OpenSans-Regular.ttf"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 18
+use_mipmaps = false
+use_filter = false
+font_data = SubResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFontData" id=4]
 
@@ -41,51 +41,37 @@ _sections_unfolded = [ "Resource" ]
 
 [sub_resource type="DynamicFont" id=5]
 
-size = 18
-use_mipmaps = false
-use_filter = false
-font_data = SubResource( 4 )
-_sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="DynamicFontData" id=6]
-
-hinting = 2
-font_path = "res://assets/OpenSans-Regular.ttf"
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="DynamicFont" id=7]
-
 size = 16
 use_mipmaps = false
 use_filter = false
 extra_spacing_top = -6
-font_data = SubResource( 6 )
+font_data = SubResource( 4 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=6]
 
 size = 14
 use_mipmaps = false
 use_filter = false
 extra_spacing_top = -8
-font_data = SubResource( 6 )
+font_data = SubResource( 4 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[sub_resource type="DynamicFontData" id=9]
+[sub_resource type="DynamicFontData" id=7]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=8]
 
 size = 18
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 9 )
+font_data = SubResource( 7 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=9]
 
 flags = 0
 atlas = ExtResource( 10 )
@@ -93,7 +79,7 @@ region = Rect2( 32, 0, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=10]
 
 flags = 0
 atlas = ExtResource( 10 )
@@ -101,7 +87,7 @@ region = Rect2( 0, 0, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=11]
 
 flags = 0
 atlas = ExtResource( 10 )
@@ -109,7 +95,7 @@ region = Rect2( 96, 0, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=12]
 
 flags = 0
 atlas = ExtResource( 10 )
@@ -117,7 +103,7 @@ region = Rect2( 0, 32, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=13]
 
 flags = 0
 atlas = ExtResource( 10 )
@@ -125,23 +111,23 @@ region = Rect2( 64, 0, 32, 32 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[sub_resource type="DynamicFontData" id=16]
+[sub_resource type="DynamicFontData" id=14]
 
 hinting = 2
 font_path = "res://assets/OpenSans-Regular.ttf"
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=15]
 
 size = 16
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 16 )
+font_data = SubResource( 14 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Theme" id=18]
+[sub_resource type="Theme" id=16]
 
-default_font = SubResource( 17 )
+default_font = SubResource( 15 )
 _sections_unfolded = [ "Resource" ]
 
 [node name="Game" type="Node" index="0"]
@@ -153,13 +139,13 @@ script = ExtResource( 1 )
 position = Vector2( 304, 192 )
 texture = ExtResource( 2 )
 
-[node name="water" type="Sprite" parent="map" index="0"]
+[node name="water" type="Sprite" parent="." index="1"]
 
-material = SubResource( 2 )
+position = Vector2( 304, 192 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Material" ]
 
-[node name="map_objects" type="Area2D" parent="." index="1"]
+[node name="map_objects" type="Area2D" parent="." index="2"]
 
 visible = false
 input_pickable = true
@@ -187,20 +173,20 @@ polygon = PoolVector2Array( 89.5163, 0.57077, 92.5973, 18.1761, 132.649, 35.7814
 build_mode = 1
 polygon = PoolVector2Array( 235.2, 383.926, 253.686, 368.081, 288.016, 365.881, 326.748, 343.874, 381.324, 346.955, 419.176, 371.162, 435.901, 370.722, 460.548, 383.926 )
 
-[node name="base" parent="." index="2" instance=ExtResource( 4 )]
+[node name="base" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 594.94, 325.146 )
 _sections_unfolded = [ "Audio Bus", "Collision", "Transform" ]
 
-[node name="spawner" parent="." index="3" instance=ExtResource( 5 )]
+[node name="spawner" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 16.6676, 78.4112 )
 rotation = 1.5727
 
-[node name="path" type="Path2D" parent="." index="4"]
+[node name="path" type="Path2D" parent="." index="5"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 3 )
+curve = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="follow" type="PathFollow2D" parent="path" index="0"]
@@ -215,7 +201,7 @@ cubic_interp = true
 loop = false
 lookahead = 4.0
 
-[node name="GUI" type="CanvasLayer" parent="." index="5"]
+[node name="GUI" type="CanvasLayer" parent="." index="6"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -351,7 +337,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 uppercase = true
 percent_visible = 1.0
@@ -374,7 +360,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 align = 1
 autowrap = true
 percent_visible = 1.0
@@ -424,7 +410,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 6 )
 align = 1
 valign = 1
 autowrap = true
@@ -448,7 +434,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -472,7 +458,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -524,7 +510,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 8 )
 text = "$10000"
 align = 1
 clip_text = true
@@ -593,7 +579,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 11 )
+texture_normal = SubResource( 9 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -643,7 +629,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 12 )
+texture_normal = SubResource( 10 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -693,7 +679,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 13 )
+texture_normal = SubResource( 11 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -743,7 +729,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 14 )
+texture_normal = SubResource( 12 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -793,7 +779,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = SubResource( 15 )
+texture_normal = SubResource( 13 )
 _sections_unfolded = [ "Textures" ]
 __meta__ = {
 "_edit_group_": true
@@ -891,16 +877,16 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-theme = SubResource( 18 )
+theme = SubResource( 16 )
 popup_exclusive = true
 window_title = ""
 resizable = false
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog", "Grow Direction", "Material", "Popup", "Rect", "Theme", "Visibility" ]
 
-[node name="towers" type="Node" parent="." index="6"]
+[node name="towers" type="Node" parent="." index="7"]
 
-[node name="music" type="AudioStreamPlayer" parent="." index="7"]
+[node name="music" type="AudioStreamPlayer" parent="." index="8"]
 
 stream = ExtResource( 11 )
 volume_db = -10.0
