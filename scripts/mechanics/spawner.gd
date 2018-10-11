@@ -7,6 +7,15 @@ var spawning = false
 var spawned = 0
 var timer = 0
 var done = true
+var health = 1
+var amount = 10
+var speed = 50
+var base_health = health
+var base_amount = amount
+var base_speed = speed
+var wt = 0
+var blue = false
+var delay = 1
 var game
 
 enum enemy {
@@ -99,79 +108,41 @@ func start():
 	spawning = true
 	spawned = 0
 	done = false
+	if game.wave % 5 == 0 && game.wave != 0:
+		base_health += 1
+		base_amount += 1
+		base_speed += 2
+	health = base_health
+	amount = base_amount
+	speed = base_speed
+	randomize()
+	wt = randi() % 3
+	if wt == 0:
+		delay = gap_type.SMALL
+		health = max(1, round(health / 2))
+		amount *= 2.5
+		speed = max(1, round(speed / 2))
+	elif wt == 1:
+		delay = gap_type.MEDIUM
+		health = round(health * 1.5)
+		amount *= 1.5
+	elif wt == 2:
+		delay = gap_type.LARGE
+		health = round(health * 1.2)
+		speed *= 1.5
+	print(wt)
+	print(health, "h " + String(speed), "s " + String(amount) + "a")
 	
 ## [ type, count, delay, health, speed, damage ]=
 	
 func waves():
 	var wave = game.wave
-	if spawning:
-		if wave == 1:
-			if timer % 50 == 0:
-				spawn_enemy(enemy.BASIC, 1, 75, 1)
-			if spawned == 10:
-				spawning = false
-		if wave == 2:
-			if timer % 25 == 0:
-				spawn_enemy(enemy.BASIC, 1, 75, 1)
-			if spawned == 15:
-				spawning = false
-		if wave == 3:
-			if timer % 50 == 0:
-				spawn_enemy(enemy.BASIC, 1, 150, 1)
-			if spawned == 20:
-				spawning = false
-		if wave == 4:
-			if timer % 60 == 0:
-				spawn_enemy(enemy.BASIC, 2, 75, 1)
-			if spawned == 10:
-				spawning = false
-		if wave == 5:
-			spawn_enemy(enemy.BASIC, 8, 75, 1)
+	if wave < 50 && spawning:
+		if spawned < amount:
+			if timer % delay == 0:
+				spawn_enemy(enemy.BASIC, health, speed, 1)
+		else:
 			spawning = false
-		if wave == 6:
-			if timer % 60 == 0:
-				spawn_enemy(enemy.BASIC, 2, 150, 1)
-			if spawned == 15:
-				spawning = false
-		if wave == 7:
-			if timer % 10 == 0:
-				spawn_enemy(enemy.BASIC, 1, 75, 1)
-			if spawned == 25:
-				spawning = false
-		if wave == 8:
-			if timer % 100 == 0:
-				spawn_enemy(enemy.BASIC, 6, 75, 1)
-			if spawned == 5:
-				spawning = false
-		if wave == 9:
-			if timer % 125 == 0:
-				spawn_enemy(enemy.BASIC, 5, 150, 1)
-			if spawned == 10:
-				spawning = false
-		if wave == 10:
-			spawn_enemy(enemy.BLUE, 10, 75, 2)
-			spawning = false
-		if wave == 11:
-			if timer % 125 == 0:
-				spawn_enemy(enemy.BASIC, 6, 75, 1)
-			if timer % 50 == 0:
-				spawn_enemy(enemy.BASIC, 3, 150, 1)
-			if spawned == 30:
-				spawning = false
-		if wave == 12:
-			if timer % 50 == 0:
-				spawn_enemy(enemy.BASIC, 5, 75, 1)
-				spawn_enemy(enemy.BASIC, 3, 75, 1)
-			if spawned >= 35:
-				spawning = false
-		if wave == 13:
-			print(spawning)
-			if spawned <= 20:
-				if timer % 25 == 0:
-					spawn_enemy(enemy.BASIC, 5, 75, 1)
-			elif spawned <= 23:
-				if timer % 50 == 0:
-					spawn_enemy(enemy.BLUE, 11, 75, 2)
 
 #func start(wave):
 #	spawning = true
