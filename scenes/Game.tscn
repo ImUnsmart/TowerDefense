@@ -138,12 +138,18 @@ script = ExtResource( 1 )
 
 position = Vector2( 304, 192 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="water" type="Sprite" parent="." index="1"]
 
 position = Vector2( 304, 192 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Material" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="map_objects" type="Area2D" parent="." index="2"]
 
@@ -160,17 +166,17 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="path" type="CollisionPolygon2D" parent="map_objects" index="0"]
 
-build_mode = 1
+build_mode = 0
 polygon = PoolVector2Array( -1.64894, 55.7285, 37.711, 54.8834, 87.2981, 65.2848, 113.027, 85.1325, 132.051, 134.369, 132.051, 216.995, 132.037, 266.612, 138.02, 291.695, 155.076, 310.306, 171.835, 315.219, 205.649, 301.987, 229.907, 264.497, 244.172, 214.873, 263.119, 117.655, 273.278, 91.0133, 297.537, 68.2252, 343.358, 62.8392, 381.888, 64.0309, 400.16, 65.2225, 423.974, 77.0464, 447.497, 110.861, 468.815, 178.49, 499.689, 291.695, 521.311, 303.554, 607.905, 309.909, 608.302, 342.084, 524.682, 336.536, 499.862, 331.359, 475.234, 316.662, 462.199, 299.782, 443.457, 202.66, 418.828, 129.238, 393.835, 97.6292, 330.616, 93.9537, 297.28, 108.917, 272.653, 230.465, 256, 288, 218.146, 333.596, 173.305, 351.974, 141.571, 338.112, 120.915, 321.031, 109.793, 301.17, 99.7948, 273.318, 97.9227, 132.573, 82.8875, 99.8345, 47.6027, 88.0729, 0.556351, 83.6623 )
 
 [node name="water" type="CollisionPolygon2D" parent="map_objects" index="1"]
 
-build_mode = 1
+build_mode = 0
 polygon = PoolVector2Array( 89.5163, 0.57077, 92.5973, 18.1761, 132.649, 35.7814, 134.85, 68.7913, 149.374, 89.0374, 190.307, 94.319, 216.715, 70.1117, 238.281, 50.7459, 249.725, 30.0597, 251.925, 0.130638 )
 
 [node name="water2" type="CollisionPolygon2D" parent="map_objects" index="2"]
 
-build_mode = 1
+build_mode = 0
 polygon = PoolVector2Array( 235.2, 383.926, 253.686, 368.081, 288.016, 365.881, 326.748, 343.874, 381.324, 346.955, 419.176, 371.162, 435.901, 370.722, 460.548, 383.926 )
 
 [node name="base" parent="." index="3" instance=ExtResource( 4 )]
@@ -188,6 +194,9 @@ rotation = 1.5727
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="follow" type="PathFollow2D" parent="path" index="0"]
 
@@ -322,6 +331,10 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0.273438, 0.273438, 0.273438, 1 )
 _sections_unfolded = [ "Rect" ]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="t_name" type="Label" parent="GUI/upgrade" index="0"]
 

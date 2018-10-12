@@ -7,29 +7,23 @@ var spawning = false
 var spawned = 0
 var timer = 0
 var done = true
-var health = 1
-var amount = 10
-var speed = 50
-var base_health = health
-var base_amount = amount
-var base_speed = speed
-var wt = 0
-var blue = false
+var index = 0
 var delay = 1
+var data
 var game
 
 enum enemy {
     # Basic are the simplest enemies available and can be attacked by anything
-    BASIC,
+    basic,
     # Blue are only able to be attacked by beams -- first appear wave 10
-    BLUE
+    blue
     # Green are only able to be attacked by projectiles
     #GREEN
 }
 
 const enemyInfo = {
-	"BASIC":{"FIRST_ROUND":1,"STAT_MULTIPLIERS":{"HEALTH":1,"SPEED":100,"DAMAGE":1},"INTRODUCE":false},
-	"BLUE":{"FIRST_ROUND":10,"STAT_MULTIPLIERS":{"HEALTH":1.5,"SPEED":100,"DAMAGE":1},"INTRODUCE":true,"INTRO":["Blue Enemies", "Blue Enemies are have more health and are immune to projectiles."]}
+	"basic":{"FIRST_ROUND":1,"STAT_MULTIPLIERS":{"HEALTH":1,"SPEED":100,"DAMAGE":1},"INTRODUCE":false},
+	"blue":{"FIRST_ROUND":10,"STAT_MULTIPLIERS":{"HEALTH":1.5,"SPEED":100,"DAMAGE":1},"INTRODUCE":true,"INTRO":["Blue Enemies", "Blue Enemies are have more health and are immune to projectiles."]}
 }
 
 enum subType {
@@ -55,6 +49,12 @@ enum gap_type {
 func _ready():
 	game = get_tree().root.get_node("Game")
 	path = game.get_node("path/follow")
+	var file = File.new()
+	file.open("res://data/waves.json", File.READ)
+	var text = file.get_as_text()
+	file.close()
+	var parse = JSON.parse(text)
+	data = parse.result
 	pass
 
 #func _on_spawn_timer_timeout():
@@ -82,6 +82,7 @@ func _ready():
 func _process(delta):
 	if spawning:
 		timer += 1
+		print(timer)
 	waves()
 	if !spawning && $enemies.get_child_count() == 0 && !done:
 		game.wave_money()
@@ -92,9 +93,9 @@ func _process(delta):
 
 func spawn_enemy(type, health, speed, damage):
 	var e
-	if type == enemy.BASIC:
+	if type == enemy.basic:
 		e = enemy_basic.instance()
-	if type == enemy.BLUE:
+	if type == enemy.blue:
 		e = enemy_blue.instance()
 	e.position = Vector2(-32, -32)
 	e.path = path
@@ -108,41 +109,26 @@ func start():
 	spawning = true
 	spawned = 0
 	done = false
-	if game.wave % 5 == 0 && game.wave != 0:
-		base_health += 1
-		base_amount += 1
-		base_speed += 2
-	health = base_health
-	amount = base_amount
-	speed = base_speed
-	randomize()
-	wt = randi() % 3
-	if wt == 0:
-		delay = gap_type.SMALL
-		health = max(1, round(health / 2))
-		amount *= 2.5
-		speed = max(1, round(speed / 2))
-	elif wt == 1:
-		delay = gap_type.MEDIUM
-		health = round(health * 1.5)
-		amount *= 1.5
-	elif wt == 2:
-		delay = gap_type.LARGE
-		health = round(health * 1.2)
-		speed *= 1.5
-	print(wt)
-	print(health, "h " + String(speed), "s " + String(amount) + "a")
 	
 ## [ type, count, delay, health, speed, damage ]=
 	
 func waves():
 	var wave = game.wave
-	if wave < 50 && spawning:
-		if spawned < amount:
-			if timer % delay == 0:
-				spawn_enemy(enemy.BASIC, health, speed, 1)
-		else:
-			spawning = false
+	if wave == 0:
+		return
+	var enemies = data[String(wave)]["enemies"]
+	if index < enemies.size():
+		if timer % delay == 0:
+			var data = enemies[index]
+			delay = int(data.spacing)
+			if spawned < int(data.amount):
+				spawn_enemy(enemy[data.type], int(data.health), int(data.speed), 1)
+			else:
+				index += 1
+				spawned = 0
+				delay = 20
+	else:
+		spawning = false
 
 #func start(wave):
 #	spawning = true

@@ -1,0 +1,6 @@
+{
+  "1": {
+    "enemies": [{"type": "basic", "health": "1", "speed": "75", "amount": "10", "spacing": "50"},
+                {"type": "basic", "health": "2", "speed": "50", "amount": "5", "spacing": "100"}]
+  }
+}
