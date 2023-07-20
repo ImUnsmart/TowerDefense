@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://codublmc016tb"]
+
+[ext_resource type="Script" path="res://script/tower/projectile/projectile.gd" id="1_5ovqu"]
+[ext_resource type="Texture2D" uid="uid://b68fme2psjga" path="res://assets/arrow.png" id="1_mq4rr"]
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_5ovqu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_mq4rr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

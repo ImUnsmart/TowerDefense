@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnadij4aywgmt"]
+
+[ext_resource type="PackedScene" uid="uid://72niop4d8s7u" path="res://scenes/tower/tower.tscn" id="1_rsylq"]
+[ext_resource type="Texture2D" uid="uid://sb7ca3r8aoi8" path="res://assets/magical_bow.png" id="2_2tltg"]
+[ext_resource type="Script" path="res://script/tower/tower_multi_projectile.gd" id="2_l6th5"]
+[ext_resource type="PackedScene" uid="uid://7ke3ekduc3fo" path="res://scenes/tower/projectile/arrow.tscn" id="3_x6lcj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nlck7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2tltg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vvd1i"]
+radius = 16.0
+
+[node name="TowerMagicalBow" instance=ExtResource("1_rsylq")]
+script = ExtResource("2_l6th5")
+proj_scene = ExtResource("3_x6lcj")
+tower_name = "magical_bow"
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_nlck7")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_vvd1i")
+
+[node name="ShootTimer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

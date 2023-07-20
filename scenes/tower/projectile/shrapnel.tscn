@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://berswk4b4myji"]
+
+[ext_resource type="PackedScene" uid="uid://codublmc016tb" path="res://scenes/tower/projectile/projectile.tscn" id="1_7opwk"]
+[ext_resource type="Texture2D" uid="uid://cnvevb4dk15si" path="res://assets/pixel.png" id="2_ivjgr"]
+[ext_resource type="PackedScene" uid="uid://w8o7wqakq5p7" path="res://scenes/tower/projectile/death_timer.tscn" id="3_su42s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_717bu"]
+size = Vector2(8, 8)
+
+[node name="Shrapnel" instance=ExtResource("1_7opwk")]
+speed = 90.0
+starting_angular_velocity = 6.283
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ivjgr")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_717bu")
+
+[node name="DeathTimer" parent="." index="2" instance=ExtResource("3_su42s")]

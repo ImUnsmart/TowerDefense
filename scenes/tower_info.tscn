@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlhutlsoaadgh"]
+
+[ext_resource type="Script" path="res://script/tower_info.gd" id="1_4jho8"]
+[ext_resource type="Texture2D" uid="uid://w0lmev4w4gir" path="res://assets/gold.png" id="1_isaxl"]
+
+[node name="TowerInfo" type="Control"]
+custom_minimum_size = Vector2(192, 160)
+layout_mode = 3
+anchor_right = 0.288889
+anchor_bottom = 0.458333
+offset_right = -1.52588e-05
+grow_vertical = 0
+script = ExtResource("1_4jho8")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TowerName" type="RichTextLabel" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][b]Tower Name[/b][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="UpgradeName" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "upgrade name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeDesc" type="RichTextLabel" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "upgrade desc"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Upgrade"
+
+[node name="SellButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Sell"
+icon = ExtResource("1_isaxl")
+expand_icon = true
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SellButton" to="." method="_on_sell_button_pressed"]

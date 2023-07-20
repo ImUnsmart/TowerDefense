@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://50heccrn7lxq"]
+
+[ext_resource type="Script" path="res://script/gold_effect.gd" id="1_q02p4"]
+
+[node name="GoldEffect" type="Node2D"]
+script = ExtResource("1_q02p4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -11.5
+offset_right = 48.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.839216, 0.839216, 0, 1)
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="DieTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]

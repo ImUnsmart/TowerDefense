@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://cx7eovr28hi3a"]
+
+[ext_resource type="PackedScene" uid="uid://72niop4d8s7u" path="res://scenes/tower/tower.tscn" id="1_mgx61"]
+[ext_resource type="Script" path="res://script/tower/tower_bow.gd" id="2_byjhh"]
+[ext_resource type="Texture2D" uid="uid://6gjouj7ocf0t" path="res://assets/bow.png" id="2_wpk8d"]
+[ext_resource type="PackedScene" uid="uid://7ke3ekduc3fo" path="res://scenes/tower/projectile/arrow.tscn" id="3_nl1ai"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwkj0"]
+atlas = ExtResource("2_wpk8d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71fdm"]
+atlas = ExtResource("2_wpk8d")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fheyw"]
+atlas = ExtResource("2_wpk8d")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnvxx"]
+atlas = ExtResource("2_wpk8d")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmstm"]
+atlas = ExtResource("2_wpk8d")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mofi2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwkj0")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71fdm")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fheyw")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnvxx")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmstm")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pskya"]
+radius = 13.0
+
+[node name="TowerBow" instance=ExtResource("1_mgx61")]
+script = ExtResource("2_byjhh")
+proj_scene = ExtResource("3_nl1ai")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_mofi2")
+animation = &"1"
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_pskya")
+
+[node name="ShootTimer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

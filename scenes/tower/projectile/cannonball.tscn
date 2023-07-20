@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlcjalgsqxafr"]
+
+[ext_resource type="PackedScene" uid="uid://codublmc016tb" path="res://scenes/tower/projectile/projectile.tscn" id="1_nwo78"]
+[ext_resource type="Script" path="res://script/tower/projectile/cannonball.gd" id="2_7mn0g"]
+[ext_resource type="Texture2D" uid="uid://b8x4unfnpeq3p" path="res://assets/cannonball.png" id="2_fbk1h"]
+[ext_resource type="PackedScene" uid="uid://berswk4b4myji" path="res://scenes/tower/projectile/shrapnel.tscn" id="3_o4c5f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_weaqm"]
+radius = 6.0
+
+[node name="Cannonball" instance=ExtResource("1_nwo78")]
+script = ExtResource("2_7mn0g")
+shrapnel_scene = ExtResource("3_o4c5f")
+starting_angular_velocity = 6.283
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_fbk1h")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_weaqm")

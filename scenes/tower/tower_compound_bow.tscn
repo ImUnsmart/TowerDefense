@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkbjua2kataoe"]
+
+[ext_resource type="PackedScene" uid="uid://72niop4d8s7u" path="res://scenes/tower/tower.tscn" id="1_v6e8u"]
+[ext_resource type="Script" path="res://script/tower/tower_projectile.gd" id="2_bde3t"]
+[ext_resource type="PackedScene" uid="uid://7ke3ekduc3fo" path="res://scenes/tower/projectile/arrow.tscn" id="3_ar823"]
+[ext_resource type="Texture2D" uid="uid://3pxpbfmatpf1" path="res://assets/compound_bow.png" id="4_1ouoa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_us7aw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1ouoa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nylr8"]
+radius = 12.0
+
+[node name="TowerCompoundBow" instance=ExtResource("1_v6e8u")]
+script = ExtResource("2_bde3t")
+proj_scene = ExtResource("3_ar823")
+tower_name = "compound_bow"
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_us7aw")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_nylr8")
+
+[node name="ShootTimer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -1,0 +1,154 @@
+[gd_scene load_steps=9 format=3 uid="uid://30ejf35j67mf"]
+
+[ext_resource type="Script" path="res://script/game.gd" id="1_yps1c"]
+[ext_resource type="Texture2D" uid="uid://cbkku6lhm0gil" path="res://assets/background.png" id="2_mkq0t"]
+[ext_resource type="PackedScene" uid="uid://cdxw4kyt8t3ji" path="res://scenes/tower_shop.tscn" id="3_qtrka"]
+[ext_resource type="Script" path="res://script/spawner.gd" id="4_agauo"]
+[ext_resource type="PackedScene" uid="uid://dlhutlsoaadgh" path="res://scenes/tower_info.tscn" id="5_2qc1i"]
+
+[sub_resource type="Curve2D" id="Curve2D_4ca4s"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -37, 88, 0, 0, 0, 0, 192, 88, 0, 0, 0, 0, 323, 352, 0, 0, 0, 0, 402, 44, 0, 0, 0, 0, 591, 44, 0, 0, 0, 0, 601, 203, 0, 0, 0, 0, 623, 236, 0, 0, 0, 0, 756, 235)
+}
+point_count = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rua1q"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsudg"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_yps1c")
+gold = 50
+starting_wave = 15
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mkq0t")
+
+[node name="MonsterPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4ca4s")
+
+[node name="Projectiles" type="Node" parent="."]
+
+[node name="Towers" type="Node" parent="."]
+
+[node name="Spawner" type="Node" parent="."]
+script = ExtResource("4_agauo")
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(224, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 8
+
+[node name="ShopButton" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shop"
+
+[node name="FastButton" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GoldCounter" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.839216, 0.839216, 0, 1)
+bbcode_enabled = true
+text = "gold"
+fit_content = true
+scroll_active = false
+
+[node name="HealthCounter" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+bbcode_enabled = true
+text = "gold"
+fit_content = true
+scroll_active = false
+
+[node name="WaveCounter" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.235294, 0.505882, 1, 1)
+bbcode_enabled = true
+text = "[img=24]res://assets/skull.png[/img] 1"
+fit_content = true
+scroll_active = false
+
+[node name="TowerShop" parent="CanvasLayer/MarginContainer" instance=ExtResource("3_qtrka")]
+visible = false
+layout_mode = 2
+
+[node name="TowerInfo" parent="CanvasLayer/MarginContainer" instance=ExtResource("5_2qc1i")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="PathCollider" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="PathCollider"]
+polygon = PackedVector2Array(-32, 107, 175, 106, 304, 384, 343, 375, 413, 64, 577, 64, 577, 233, 599, 255, 752, 256, 752, 214, 639, 213, 618, 192, 618, 35, 604, 22, 381, 22, 315, 294, 203, 64, 30.9423, 64, -32, 64)
+
+[node name="TowerPicker" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TowerPicker"]
+shape = SubResource("CircleShape2D_rua1q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(360, 192)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_bsudg")
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/FastButton" to="." method="_on_fast_button_pressed"]
+[connection signal="sell" from="CanvasLayer/MarginContainer/TowerInfo" to="." method="_on_tower_info_sell"]
+[connection signal="upgrade" from="CanvasLayer/MarginContainer/TowerInfo" to="." method="_on_tower_info_upgrade"]

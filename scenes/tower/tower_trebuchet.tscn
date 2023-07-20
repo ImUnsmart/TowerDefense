@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://con6ug2e4xbgs"]
+
+[ext_resource type="PackedScene" uid="uid://72niop4d8s7u" path="res://scenes/tower/tower.tscn" id="1_xsuwa"]
+[ext_resource type="Texture2D" uid="uid://b7sh36gy2vw8" path="res://assets/trebuchet.png" id="2_2urwf"]
+[ext_resource type="Script" path="res://script/tower/tower_projectile.gd" id="2_kd8w5"]
+[ext_resource type="PackedScene" uid="uid://c4ibyjradsbqs" path="res://scenes/tower/projectile/flaming_wood.tscn" id="3_86lp7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gcmi1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2urwf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4lrk"]
+size = Vector2(20, 30)
+
+[node name="TowerTrebuchet" instance=ExtResource("1_xsuwa")]
+script = ExtResource("2_kd8w5")
+proj_scene = ExtResource("3_86lp7")
+tower_name = "trebuchet"
+rotate = 1
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_gcmi1")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_a4lrk")
+
+[node name="ShootTimer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

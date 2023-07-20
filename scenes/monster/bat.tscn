@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhh8dfdd36ugb"]
+
+[ext_resource type="PackedScene" uid="uid://b5chvxwej2yd2" path="res://scenes/monster/monster.tscn" id="1_qc7d0"]
+[ext_resource type="Texture2D" uid="uid://bmbkau7hvn6x0" path="res://assets/bat.png" id="2_wjia0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb8du"]
+atlas = ExtResource("2_wjia0")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pliv7"]
+atlas = ExtResource("2_wjia0")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6bq24"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb8du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pliv7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6sq6"]
+radius = 9.05539
+
+[node name="Bat" instance=ExtResource("1_qc7d0")]
+speed = 65.0
+hit_color = Color(0.203922, 0.258824, 0.556863, 1)
+
+[node name="AnimatedSprite2D" parent="Area2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_6bq24")
+autoplay = "default"
+frame_progress = 0.0759099
+
+[node name="CollisionShape2D" parent="Area2D" index="1"]
+shape = SubResource("CircleShape2D_o6sq6")

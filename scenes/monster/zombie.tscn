@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw7e0gy65xtyp"]
+
+[ext_resource type="PackedScene" uid="uid://b5chvxwej2yd2" path="res://scenes/monster/monster.tscn" id="1_rqswg"]
+[ext_resource type="Texture2D" uid="uid://lcim0jqoxd8y" path="res://assets/zombie.png" id="3_dnr0t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pgeo"]
+atlas = ExtResource("3_dnr0t")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pss3"]
+atlas = ExtResource("3_dnr0t")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hh45s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pgeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pss3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uv8v7"]
+radius = 6.0
+height = 26.0
+
+[node name="Zombie" instance=ExtResource("1_rqswg")]
+speed = 30.0
+health = 5
+value = 3
+hit_color = Color(0.180392, 0.466667, 0.054902, 1)
+
+[node name="AnimatedSprite2D" parent="Area2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_hh45s")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="Area2D" index="1"]
+shape = SubResource("CapsuleShape2D_uv8v7")

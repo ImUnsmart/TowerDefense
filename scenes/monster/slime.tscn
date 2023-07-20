@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7l5ch3e5vkbu"]
+
+[ext_resource type="PackedScene" uid="uid://b5chvxwej2yd2" path="res://scenes/monster/monster.tscn" id="1_qgm2x"]
+[ext_resource type="Texture2D" uid="uid://dljnl5n5k0m3x" path="res://assets/slime.png" id="2_eambl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5w8o"]
+atlas = ExtResource("2_eambl")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7sgp"]
+atlas = ExtResource("2_eambl")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jsw76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5w8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7sgp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crtwi"]
+
+[node name="Slime" instance=ExtResource("1_qgm2x")]
+speed = 40.0
+hit_color = Color(0.207843, 0.647059, 0.333333, 1)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="Area2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_jsw76")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="Area2D" index="1"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_crtwi")

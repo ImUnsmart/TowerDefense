@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://c35pq8d3s4my0"]
+
+[ext_resource type="PackedScene" uid="uid://b5chvxwej2yd2" path="res://scenes/monster/monster.tscn" id="1_ennde"]
+[ext_resource type="Texture2D" uid="uid://h4lt4tysojd6" path="res://assets/skeleton.png" id="2_f7v3l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s13y"]
+atlas = ExtResource("2_f7v3l")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k3k1"]
+atlas = ExtResource("2_f7v3l")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e4a4q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s13y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k3k1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xvb4w"]
+radius = 6.0
+height = 26.0
+
+[node name="Skeleton" instance=ExtResource("1_ennde")]
+speed = 40.0
+health = 8
+value = 5
+
+[node name="AnimatedSprite2D" parent="Area2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_e4a4q")
+autoplay = "default"
+frame_progress = 0.596433
+
+[node name="CollisionShape2D" parent="Area2D" index="1"]
+shape = SubResource("CapsuleShape2D_xvb4w")

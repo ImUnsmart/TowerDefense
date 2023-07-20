@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfua4nti5jid3"]
+
+[ext_resource type="PackedScene" uid="uid://b5chvxwej2yd2" path="res://scenes/monster/monster.tscn" id="1_eti53"]
+[ext_resource type="Texture2D" uid="uid://dsncm6mef6bhm" path="res://assets/gloop.png" id="2_dr5qu"]
+[ext_resource type="Script" path="res://script/monster/health_bar.gd" id="3_53f1k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aam44"]
+atlas = ExtResource("2_dr5qu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt8to"]
+atlas = ExtResource("2_dr5qu")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oiutn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aam44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt8to")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h43mh"]
+radius = 24.0208
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skung"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykctk"]
+bg_color = Color(0, 0.729412, 0, 1)
+
+[node name="Gloop" instance=ExtResource("1_eti53")]
+speed = 15.0
+health = 150
+value = 25
+hit_color = Color(0, 0, 0, 1)
+
+[node name="AnimatedSprite2D" parent="Area2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_oiutn")
+autoplay = "default"
+frame_progress = 0.210044
+
+[node name="CollisionShape2D" parent="Area2D" index="1"]
+shape = SubResource("CircleShape2D_h43mh")
+
+[node name="HealthBar" type="ProgressBar" parent="." index="1"]
+visible = false
+texture_filter = 1
+offset_left = -64.0
+offset_top = -48.0
+offset_right = 64.0
+offset_bottom = -32.0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_skung")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ykctk")
+value = 50.0
+show_percentage = false
+script = ExtResource("3_53f1k")

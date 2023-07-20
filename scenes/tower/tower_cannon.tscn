@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmvkyjd2fjgfx"]
+
+[ext_resource type="PackedScene" uid="uid://72niop4d8s7u" path="res://scenes/tower/tower.tscn" id="1_7dvuk"]
+[ext_resource type="Script" path="res://script/tower/tower_cannon.gd" id="2_nxg57"]
+[ext_resource type="Texture2D" uid="uid://cuihixvk3tbu8" path="res://assets/cannon.png" id="2_puwy1"]
+[ext_resource type="PackedScene" uid="uid://dlcjalgsqxafr" path="res://scenes/tower/projectile/cannonball.tscn" id="3_woqgp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d8vhe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_puwy1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opuce"]
+size = Vector2(32, 16)
+
+[node name="TowerCannon" instance=ExtResource("1_7dvuk")]
+script = ExtResource("2_nxg57")
+proj_scene = ExtResource("3_woqgp")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_d8vhe")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_opuce")
+
+[node name="ShootTimer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

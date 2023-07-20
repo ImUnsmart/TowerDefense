@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://72niop4d8s7u"]
+
+[ext_resource type="Script" path="res://script/tower/tower.gd" id="1_8hx5b"]
+
+[node name="Tower" type="Area2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_8hx5b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Detection" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]

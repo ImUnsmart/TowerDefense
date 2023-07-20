@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://baygb3nnpbgml"]
+
+[ext_resource type="Texture2D" uid="uid://cnvevb4dk15si" path="res://assets/pixel.png" id="1_sxydc"]
+[ext_resource type="Script" path="res://script/hit_particles.gd" id="2_wnm36"]
+
+[sub_resource type="Gradient" id="Gradient_bhvvj"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sjm4b"]
+gradient = SubResource("Gradient_bhvvj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wckq8"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.53
+initial_velocity_max = 31.58
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 0.75
+color_ramp = SubResource("GradientTexture1D_sjm4b")
+
+[node name="HitParticles" type="GPUParticles2D"]
+process_material = SubResource("ParticleProcessMaterial_wckq8")
+texture = ExtResource("1_sxydc")
+lifetime = 0.7
+explosiveness = 0.86
+script = ExtResource("2_wnm36")
